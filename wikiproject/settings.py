@@ -59,7 +59,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'Whitchurch$wikidata',
         'USER': 'Whitchurch',
-        'PASSWORD': 'xesFum-coxby9-vedvys',
+        'PASSWORD': 'Bollox99!',
         'HOST': 'Whitchurch.mysql.pythonanywhere-services.com',
     }
 }
