@@ -2,7 +2,7 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY  = 'django-isdsdsfre-4u+9i52vhgt&3%+d)-#n2yi9@=xds-vhniiat@=zk+c(p$7jwx'
+SECRET_KEY = 'django-sfre-4u+9i52vhgt&3%+d)-#n2yi9@=xds-vhniiat@=zk+c(p$7jwx'
 
 DEBUG = True
 
@@ -36,7 +36,7 @@ ROOT_URLCONF = 'wikiproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "templates"], # App level templates.
+        'DIRS': [BASE_DIR / "templates"],  # App level templates.
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -105,3 +105,5 @@ STATIC_URL = 'static/'
 STATIC_ROOT = "staticfiles/"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
