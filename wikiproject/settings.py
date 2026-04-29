@@ -36,7 +36,7 @@ ROOT_URLCONF = 'wikiproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"], # App level templates.
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
