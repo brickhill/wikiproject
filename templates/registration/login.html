@@ -2,12 +2,16 @@
 
 {% block content %}
 <h2>Login</h2>
+<div class="container-fluid">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <!-- <button type="submit">Login</button> -->
+        <button type="submit" class="btn btn-primary btn-lg px-4 py-2 shadow">
+            Submit
+        </button>  
+    </form>
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-</form>
-
-<a href="{% url 'password_reset' %}">Forgot password?</a>
+    <a href="{% url 'password_reset' %}">Forgot password?</a>
+</div>
 {% endblock %}

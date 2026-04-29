@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from .views import home, about,register
+from .views import home, about,register, member
 
 urlpatterns = [
     path('', home, name="home"),
@@ -8,7 +8,7 @@ urlpatterns = [
     path('about', about, name="about"),
     path('accounts/', include('django.contrib.auth.urls')),
     path('register/', register, name='register'),
-
+    path('member/', member, name="member")
     # path("", include("myapp.urls")),
 
 ]
