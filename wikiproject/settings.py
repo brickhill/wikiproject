@@ -18,8 +18,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'football'
+    'football',
+    'content',
+    'comments',
+    'search'
 ]
+
+# Ckeditor
+INSTALLED_APPS += ['ckeditor', 'ckeditor_uploader']
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+CKEDITOR_UPLOAD_PATH = "uploads/"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

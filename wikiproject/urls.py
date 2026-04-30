@@ -8,7 +8,6 @@ urlpatterns = [
     path('about', about, name="about"),
     path('accounts/', include('django.contrib.auth.urls')),
     path('register/', register, name='register'),
-    path('member/', member, name="member")
-    # path("", include("myapp.urls")),
-
+    path('member/', member, name="member"),
+    path("ckeditor/", include("ckeditor_uploader.urls")),
 ]
