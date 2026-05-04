@@ -1,4 +1,3 @@
-# TODO How do i put nav bar in a separate module?
 from django.shortcuts import render, get_object_or_404
 from .models import Post, Page, Series
 from django.db.models import Q
@@ -9,6 +8,7 @@ def post_list(request):
 
 
 def post_detail(request, slug):
+    print(f'post detail:{slug}')
     post = get_object_or_404(Post, slug=slug, status='published')
     return render(request, 'blog/post_detail.html', {'post': post})
 
