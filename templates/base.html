@@ -19,6 +19,7 @@
             <div>
                 <a class="nav-link d-inline text-white" href="{% url 'home' %}">Home</a>
                 <a class="nav-link d-inline text-white" href="{% url 'about' %}">About</a>
+                <a class="nav-link d-inline text-white" href="{% url 'post_list' %}">Blog</a>
                 {% if user.is_authenticated %}
                     <a class="nav-link d-inline text-white" href="{% url 'member' %}">Member</a>
 

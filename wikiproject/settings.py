@@ -1,5 +1,5 @@
 from pathlib import Path
-
+import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-sfre-4u+9i52vhgt&3%+d)-#n2yi9@=xds-vhniiat@=zk+c(p$7jwx'
@@ -19,12 +19,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'football',
+    'blog'
 ]
 
 # Ckeditor
 INSTALLED_APPS += ['ckeditor', 'ckeditor_uploader']
 MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
 MIDDLEWARE = [
@@ -77,6 +78,7 @@ try:
     contents = file.read()
     print('DEV Environment')
     print(f"CONTENTS: {contents}")  # Print file content
+    
 except Exception as e:
     DEBUG = False
     print(f"LIVE Environment:{e}")
