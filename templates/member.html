@@ -1,12 +1,14 @@
-{% extends "base.html" %}
+{% extends "base2.html" %}
 
-{% block content %}
-<div class="text-center mt-5">
-    <h1 class="display-4">Welcome</h1>
-    <p class="lead">This is styled with Bootstrap</p>
+{% block content1 %}
 
-</div>
 <div class="container-fluid">
-    <h1>MEMBER</h1>
+    <h1>CONTENT1</h1>
 </div>
+{% endblock %}
+[{% block aside %}
+ASIDE GOES heRE
+{% endblock %}
+{% block left %}
+LEFT GOES heRE
 {% endblock %}

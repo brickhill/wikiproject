@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'home' %}">MySite</a>
         <div>
-            <a class="nav-link d-inline text-white" href="{% url 'home' %}">Home</a>
+            <a class="nav-link d-inline text-   hite" href="{% url 'home' %}">Home</a>
             <a class="nav-link d-inline text-white" href="{% url 'about' %}">About</a>
             <a class="nav-link d-inline text-white" href="{% url 'post_list' %}">Blog</a>
             {% if user.is_authenticated %}
@@ -10,7 +10,7 @@
 
                 <form action="{% url 'logout' %}" method="post" style="display:inline;">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-link text-white  text-decoration-none">
+                    <button type="submit" class="btn btn-primary btn-sm shadow">
                         Logout
                     </button>
                 </form>

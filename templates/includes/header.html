@@ -1,0 +1,10 @@
+<div class="container-fluid">
+    <header>
+        <h1>My Website</h1>
+        {% if user.is_authenticated %}
+            <p>Signed in as: {{ user.username }}</p>
+        {% endif %}
+        {% include "includes/navbar.html" %}
+    </header>
+</div>
+<hr>

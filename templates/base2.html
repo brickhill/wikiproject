@@ -1,0 +1,27 @@
+{% include "includes/top.html" %}
+
+<div class="container-fluid">
+    <header>
+        <h1>My Website</h1>
+        {% if user.is_authenticated %}
+            <p>Signed in as: {{ user.username }}</p>
+        {% endif %}
+        {% include "includes/navbar.html" %}
+    </header>
+</div>
+<hr>
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <aside class="col-md-3">{% block left %}{% endblock %}</aside>
+        <main class="col-md-6">
+            {% block content1 %}{% endblock %}
+        </main>
+
+        <aside class="col-md-3">{% block aside %}{% endblock %}</aside>
+    </div>
+</div>
+{% endblock %}
+
+{% include "includes/footer.html" %}
+{% include "includes/bottom.html" %}
