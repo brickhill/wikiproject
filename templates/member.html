@@ -1,14 +1,16 @@
 {% extends "base2.html" %}
+{% load blog_tags %}
 
 {% block content1 %}
+    <div class="container-fluid">
+        <h1>CONTENT1</h1>
+    </div>
+{% endblock %}
+[
+{% block aside %}
+    {% recent_posts 5 %}
+{% endblock %}
 
-<div class="container-fluid">
-    <h1>CONTENT1</h1>
-</div>
-{% endblock %}
-[{% block aside %}
-ASIDE GOES heRE
-{% endblock %}
 {% block left %}
-LEFT GOES heRE
+    LEFT GOES heRE
 {% endblock %}

@@ -1,0 +1,13 @@
+<!-- templates/includes/recent_posts.html -->
+<div class="card mb-3">
+    <div class="card-header">Recent Posts</div>
+    <ul class="list-group list-group-flush">
+        {% for post in recent_posts %}
+            <li class="list-group-item">
+                <a href="{% url 'post_detail' post.slug %}">
+                    {{ post.title }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
