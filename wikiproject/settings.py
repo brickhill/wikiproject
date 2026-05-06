@@ -19,8 +19,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'football',
-    'blog'
+    'blog',
+    'crispy_forms',
+    'crispy_bootstrap5'
 ]
+# Crispy forms
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
 
 # Ckeditor
 INSTALLED_APPS += ['ckeditor', 'ckeditor_uploader']
