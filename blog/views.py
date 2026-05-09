@@ -6,7 +6,7 @@ def post_list(request):
     posts = Post.objects.filter(status='published').order_by('-published_date')
     return render(request, 'blog/post_list.html', {'posts': posts})
 
-
+# TODO What to do if no Categories defined?
 def post_detail(request, slug):
     print(f'post detail:{slug}')
     post = get_object_or_404(Post, slug=slug, status='published')
