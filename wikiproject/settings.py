@@ -26,7 +26,7 @@ INSTALLED_APPS = [
 # Crispy forms
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
-
+# TODO Code syntax highlighting required.
 
 # Ckeditor
 INSTALLED_APPS += ['ckeditor', 'ckeditor_uploader']
