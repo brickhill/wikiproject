@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Post, Page, Series
+from django.shortcuts import render, get_object_or_404,redirect
+from .models import Post, Page, Series, Comment
 from django.db.models import Q
+from .forms import CommentForm
 
 def post_list(request):
     posts = Post.objects.filter(status='published').order_by('-published_date')
@@ -8,10 +9,57 @@ def post_list(request):
 
 # TODO What to do if no Categories defined?
 def post_detail(request, slug):
-    print(f'post detail:{slug}')
-    post = get_object_or_404(Post, slug=slug, status='published')
-    return render(request, 'blog/post_detail.html', {'post': post})
 
+    post = get_object_or_404(
+        Post,
+        slug=slug,
+        status='published'
+    )
+
+    comments = post.comments.filter(
+        active=True,
+        parent__isnull=True
+    )
+
+    form = CommentForm()
+
+    if request.method == 'POST':
+
+        if request.user.is_authenticated:
+
+            form = CommentForm(request.POST)
+
+            if form.is_valid():
+
+                comment = form.save(commit=False)
+
+                comment.post = post
+                comment.user = request.user
+
+                parent_id = request.POST.get('parent_id')
+
+                if parent_id:
+                    comment.parent = Comment.objects.get(id=parent_id)
+
+                comment.save()
+
+                return redirect('post_detail', slug=slug)
+
+    return render(request, 'blog/post_detail.html', {
+        'post': post,
+        'comments': comments,
+        'form': form
+    })
+
+# TODO Only show approved commments.
+# TODO Add comment rate limiting.
+# TODO Add comment CAPTCHCA
+# TODO Add comment Akismet
+# TODO Add Ajax comments.
+# TODO Add comment upvotes/downvotes
+# TODO Add comment notifications.
+# TODO Add comment mentions.
+# TODO Add avator to user.
 
 def page_detail(request, slug):
     page = get_object_or_404(Page, slug=slug)

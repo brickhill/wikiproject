@@ -8,6 +8,56 @@
 <h1>{{ post.title }}</h1>
 <p>{{ post.content|safe }}</p>
 <p>{{ post.categories }}</p>
+{% if post.allow_comments %}
+    <h3>Comments</h3>
+
+    {% if user.is_authenticated %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit"
+                class="btn btn-primary btn-sm">
+            Post Comment
+        </button>
+    </form>
+
+    {% else %}
+
+    <p>
+        <a href="{% url 'login' %}">
+            Sign in
+        </a>
+        to comment.
+    </p>
+
+    {% endif %}
+
+    <div class="mt-4">
+
+        {% for comment in comments %}
+            {% include "blog/comment.html" with comment=comment level=0 %}
+        {% empty %}
+            <p>No comments yet.</p>
+        {% endfor %}
+
+    </div>
+    <script>
+    function showReplyForm(commentId) {
+
+        const form = document.getElementById(
+            'reply-form-' + commentId
+        );
+
+        if (form.style.display === 'none') {
+            form.style.display = 'block';
+        } else {
+            form.style.display = 'none';
+        }
+    }
+    </script>
+{% endif %}
 
 <form method="get" action="{% url 'search' %}">
     <input type="text" name="q" placeholder="Search..."> 
