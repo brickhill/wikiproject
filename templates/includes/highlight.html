@@ -6,3 +6,43 @@
 <script>
     hljs.highlightAll();
 </script>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    document.querySelectorAll('pre').forEach(pre => {
+
+        const wrapper = document.createElement('div');
+        wrapper.classList.add('code-block');
+
+        pre.parentNode.insertBefore(wrapper, pre);
+
+        wrapper.appendChild(pre);
+
+        const button = document.createElement('button');
+
+        button.innerText = 'Copy';
+        button.classList.add('copy-btn');
+
+        wrapper.appendChild(button);
+
+        button.addEventListener('click', async function() {
+
+            const code = pre.innerText;
+
+            await navigator.clipboard.writeText(code);
+
+            button.innerText = 'Copied!';
+
+            setTimeout(() => {
+                button.innerText = 'Copy';
+            }, 2000);
+
+        });
+
+    });
+
+});
+
+</script>
