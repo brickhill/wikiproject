@@ -3,12 +3,14 @@ pre {
     padding: .3rem;
     overflow-x: auto;
     margin-bottom: 1.5rem;
-    background-color: rgb(170, 206, 206);
+    background-color: #bbb;
 }
 
 code {
     font-family: Consolas, Monaco, monospace;
-
+}
+.language-python, .language-html {
+    background-color: rgb(240, 234, 234);
 }
 
 .code-block {
