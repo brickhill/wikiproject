@@ -20,7 +20,7 @@
             <div>
 
             <form method="post"
-                  action="{% url 'cookie_consent_accept_all' %}">
+                  action="{% url 'cookie_consent:cookie_consent_accept_all' %}">
                 {% csrf_token %}
                 <input type="hidden"
                        name="next"
@@ -31,7 +31,7 @@
                 </button>
             </form>
             <form method="post"
-                  action="{% url 'cookie_consent_decline_all' %}">
+                  action="{% url 'cookie_consent:cookie_consent_decline_all' %}">
                 {% csrf_token %}
                 <input type="hidden"
                        name="next"
