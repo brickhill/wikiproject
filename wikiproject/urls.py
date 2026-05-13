@@ -3,7 +3,9 @@ from django.urls import path, include
 from .views import home, about,register, member
 from django.conf import settings
 from django.conf.urls.static import static
-
+# TODO How to get rid of ckeditor warning message.
+# TODO Style buttons nicer on cookie policy.
+# TODO Add cookie policy page.
 urlpatterns = [
     path('', home, name="home"),
     path('admin/', admin.site.urls),
@@ -12,8 +14,9 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('member/', member, name="member"),
     path('blog/', include('blog.urls')),
-
     path("ckeditor/", include("ckeditor_uploader.urls")),
+    path('cookies/', include('cookie_consent.urls')),
+
 ]
 
 

@@ -23,7 +23,8 @@ INSTALLED_APPS = [
     'football',
     'blog',
     'crispy_forms',
-    'crispy_bootstrap5'
+    'crispy_bootstrap5',
+    'cookie_consent'
 ]
 # Crispy forms
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
