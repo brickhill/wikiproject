@@ -1,7 +1,6 @@
 # admin.py
 from django.contrib import admin
 from .models import Post, Page, Series, Category, Comment
-
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     list_display = ('title', 'status', 'created')

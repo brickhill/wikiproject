@@ -3,7 +3,12 @@ from django.contrib.auth.decorators import login_required
 from .forms import RegisterForm
 import resend
 from django.conf import settings
-
+# XXX Add cookie acceptance.
+# MAJOR Add contact form.
+# XXX Home page text
+# XXX T&C
+# XXX Privacy
+# XXX List of series in a sidebar.
 
 def home(request):
     # return HttpResponse("Hello, worldx!")
@@ -21,6 +26,7 @@ def about(request):
 
 @login_required
 def member(request):
+    # TODO Add sbsys.co.uk to resend.
     context = {}
     resend.api_key = settings.RESEND_API_KEY
 

@@ -1,21 +1,34 @@
 {% extends "base.html" %}
 
 {% block content %}
-
 <div class="container-fluid">
 
-
-<h1>Blog</h1>
-
-{% for post in posts %}
-  <h2><a href="{% url 'post_detail' post.slug %}">{{ post.title }}</a></h2>
-  <p>{{ post.excerpt }}</p>
-{% endfor %}
-
-<form method="get" action="{% url 'search' %}">
-    <input type="text" name="q" placeholder="Search..."> 
-    <button type="submit" class="btn btn-primary btn-sm shadow">Search</button>
-
-</form>
+    <h1 class="mb-4">Blog Posts</h1>
+    
+    <div class="row">
+        {% for post in posts %}
+            <div class="col-md-6 mb-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <a href="{% url 'post_detail' post.slug %}">
+                            <h5 class="card-title">{{ post.title }}</h5></a>
+                        <p class="card-text">
+                            {{ post.content|safe }}
+                        </p>
+                    </div>
+    
+                    <div class="card-footer text-muted">
+                        {{ post.created|date:"M d, Y" }} : {{ post.author }}
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p>No posts yet.</p>
+        {% endfor %}
+        <form method="get" action="{% url 'search' %}">
+            <input type="text" name="q" placeholder="Search..."> 
+            <button type="submit" class="btn btn-primary btn-sm shadow">Search</button>
+        </form>
+    </div>
 </div>
 {% endblock %}

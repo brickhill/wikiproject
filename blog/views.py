@@ -50,7 +50,7 @@ def post_detail(request, slug):
         'comments': comments,
         'form': form
     })
-
+# TODO Spruce up blog detail page.
 # TODO Only show approved commments.
 # TODO Add comment rate limiting.
 # TODO Add comment CAPTCHCA
@@ -79,7 +79,7 @@ def search(request):
         Q(title__icontains=query) |
         Q(content__icontains=query)
     )
-
+# TODO Search results isn't styled.
     return render(request, 'blog/search.html', {
         'query': query,
         'results': results
