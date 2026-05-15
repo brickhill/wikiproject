@@ -3,7 +3,7 @@
 
 {% block content1 %}
     <div class="container-fluid">
-        <h1>CONTENT1</h1>
+        {{ content1|safe }}
     </div>
 {% endblock %}
 [
@@ -12,5 +12,5 @@
 {% endblock %}
 
 {% block left %}
-    LEFT GOES heRE
+    {{ left|safe }}
 {% endblock %}

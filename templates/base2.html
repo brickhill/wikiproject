@@ -1,15 +1,7 @@
 {% include "includes/top.html" %}
-
-<div class="container-fluid">
-    <header>
-        <h1>My Website</h1>
-        {% if user.is_authenticated %}
-            <p>Signed in as: {{ user.username }}</p>
-        {% endif %}
-        {% include "includes/navbar.html" %}
-    </header>
-</div>
-<hr>
+{% block header %}
+{% include "includes/header.html" %}
+{% endblock header %}
 {% block content %}
 <div class="container-fluid">
     <div class="row">
@@ -22,6 +14,6 @@
     </div>
 </div>
 {% endblock %}
-
+{% include "includes/cookies.html" %}
 {% include "includes/footer.html" %}
 {% include "includes/bottom.html" %}
