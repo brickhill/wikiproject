@@ -8,7 +8,13 @@ class PostAdmin(admin.ModelAdmin):
     list_filter = ('status', 'categories', 'series')
     search_fields = ('title', 'content')
 
-admin.site.register(Page)
+@admin.register(Page)
+class PageAdmin(admin.ModelAdmin):
+    list_display = ('title', 'keyword')
+    prepopulated_fields =  {"slug": ("title",)}
+    list_filter = ('created',)
+    search_fields = ('title', 'content')
+
 admin.site.register(Series)
 admin.site.register(Category)
 admin.site.register(Comment)

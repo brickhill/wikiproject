@@ -1,8 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .forms import RegisterForm
-import resend
-from django.conf import settings
+from blog.models import Page
+
+# import resend
+# from django.conf import settings
 # MAJOR Add contact form.
 # XXX Home page text
 # XXX T&C
@@ -11,11 +13,12 @@ from django.conf import settings
 # MAJOR Add SEO to posts and pages.
 # MAJOR 'My account' to change username, password etc.
 
+
 def home(request):
-    # return HttpResponse("Hello, worldx!")
+    page = get_object_or_404(Page, keyword='home')
     context = {
-        "title": "My Django Site",
-        "message": "Welcome to the homepage",
+        "title": page.title,
+        "content": page.content,
     }
     return render(request, "home.html", context)
 
@@ -40,7 +43,8 @@ def member(request):
     #                         "to": "petergibson@sbsys.co.uk",
     #                         "subject": "Test Email",
     #                         "html": """
-    #                         <p>Congrats on sending your <strong>first email</strong>!</p>
+    #                         <p>Congrats on sending your
+    # <strong>first email</strong>!</p>
     #                         """
     #                         })
 

@@ -95,7 +95,7 @@ try:
     contents = file.read()
     print('DEV Environment')
     print(f"CONTENTS: {contents}")  # Print file content
-    
+
 except Exception as e:
     DEBUG = False
     print(f"LIVE Environment:{e}")

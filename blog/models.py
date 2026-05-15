@@ -53,6 +53,7 @@ class Post(models.Model):
                               choices=STATUS_CHOICES,
                               default='draft')
     allow_comments = models.BooleanField(default=True)
+
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     published_date = models.DateTimeField(null=True, blank=True)
@@ -67,11 +68,26 @@ class Post(models.Model):
 
 
 class Page(models.Model):
-
+    # TODO Add status to page model.
+    KEYWORD_CHOICES = [
+        ('home', 'Home Page'),
+        ('terms', 'Terms & Conditions'),
+        ('privacy', 'Privacy'),
+        ('cookie', 'Cookie Policy')
+    ]
     title = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
     content = models.TextField()
-# TODO Add a contact form.
+    # TODO Add a contact form.
+    # TODO keyword should show selection list.
+    keyword = models.CharField(
+        max_length=7,
+        choices=KEYWORD_CHOICES,
+        null=True,
+        blank=True,
+        unique=True,
+        help_text="Keyword"
+    )
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 

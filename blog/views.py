@@ -65,6 +65,9 @@ def page_detail(request, slug):
     page = get_object_or_404(Page, slug=slug)
     return render(request, 'blog/page.html', {'page': page})
 
+def page_std_detail(request, slug):
+    page = get_object_or_404(Page, keyword=slug)
+    return render(request, 'blog/page.html', {'page': page})
 
 def series_detail(request, slug):
     series = get_object_or_404(Series, slug=slug)

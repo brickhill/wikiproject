@@ -1,4 +1,27 @@
-<hr/>
-<footer class="container-fluid">
-    <p>© 2026 My Site</p>
+<footer class="bg-light border-top mt-5 py-4">
+    <div class="container">
+        <div class="row align-items-center">
+            <!-- Left side -->
+            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                <small class="text-muted">
+                    © 2026 My Website
+                </small>
+            </div>
+            <!-- Right side -->
+            <div class="col-md-6 text-center text-md-end">
+                <a href="{% url 'page_std' slug='terms' %}"
+                   class="text-decoration-none me-3">
+                    Terms & Conditions
+                </a>
+                <a href="{% url 'page_std' slug='privacy' %}"
+                   class="text-decoration-none me-3">
+                    Privacy Policy
+                </a>
+                <a href="{% url 'page_std' slug='cookie' %}"
+                   class="text-decoration-none">
+                    Cookie Policy
+                </a>
+            </div>
+        </div>
+    </div>
 </footer>
