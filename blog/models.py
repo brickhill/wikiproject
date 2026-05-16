@@ -78,8 +78,7 @@ class Page(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
     content = models.TextField()
-    # TODO Add a contact form.
-    # TODO keyword should show selection list.
+    # TODO Contact form email is a bit rubbish.
     keyword = models.CharField(
         max_length=7,
         choices=KEYWORD_CHOICES,

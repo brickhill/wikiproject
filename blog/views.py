@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404,redirect
 from .models import Post, Page, Series, Comment
 from django.db.models import Q
 from .forms import CommentForm
+from django.contrib import messages
+
 
 def post_list(request):
     posts = Post.objects.filter(status='published').order_by('-published_date')
@@ -62,11 +64,24 @@ def post_detail(request, slug):
 # TODO Add avator to user.
 
 def page_detail(request, slug):
+
     page = get_object_or_404(Page, slug=slug)
     return render(request, 'blog/page.html', {'page': page})
 
-def page_std_detail(request, slug):
-    page = get_object_or_404(Page, keyword=slug)
+def page_std_detail(request, keyword):
+    print("PAGE DETAIL")
+    # TODO Blog page on flash messages.
+    messages.success(
+                request,
+                'SUCCESS'
+            )
+    messages.error(
+    request,
+    'Something went wrong.'
+    )
+    messages.warning(request, 'Be careful.')
+    messages.info(request, 'FYI...')
+    page = get_object_or_404(Page, keyword=keyword)
     return render(request, 'blog/page.html', {'page': page})
 
 def series_detail(request, slug):
