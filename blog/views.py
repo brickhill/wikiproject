@@ -7,7 +7,9 @@ from django.contrib import messages
 
 def post_list(request):
     posts = Post.objects.filter(status='published').order_by('-published_date')
-    return render(request, 'blog/post_list.html', {'posts': posts})
+    title = "Blog Posts"
+    return render(request, 'blog/post_list.html', {'posts': posts,
+                                                   'title': title })
 
 # TODO What to do if no Categories defined?
 def post_detail(request, slug):
@@ -50,6 +52,7 @@ def post_detail(request, slug):
     return render(request, 'blog/post_detail.html', {
         'post': post,
         'comments': comments,
+        'title': post.title,
         'form': form
     })
 # TODO Spruce up blog detail page.
@@ -69,7 +72,6 @@ def page_detail(request, slug):
     return render(request, 'blog/page.html', {'page': page})
 
 def page_std_detail(request, keyword):
-    print("PAGE DETAIL")
     # TODO Blog page on flash messages.
     messages.success(
                 request,

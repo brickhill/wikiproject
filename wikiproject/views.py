@@ -28,10 +28,12 @@ def about(request):
 
 @login_required
 def member(request):
+    title = "Member"
     # TODO Add sbsys.co.uk to resend.
     context = {
         "content1": "<h1>Content11</h1>",
-        "left": "stuff on the left"
+        "left": "stuff on the left",
+        "title": title
     }
 
     return render(request, "member.html", context)
