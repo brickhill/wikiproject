@@ -13,7 +13,8 @@ from blog.models import Page
 # MAJOR Add SEO to posts and pages.
 # MAJOR 'My account' to change username, password etc.
 
-
+# TODO Page content should use ckeditor
+# TODO Don't die if std page is not present.
 def home(request):
     page = get_object_or_404(Page, keyword='home')
     context = {
