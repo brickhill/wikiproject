@@ -3,7 +3,8 @@ from .models import Post, Page, Series, Comment
 from django.db.models import Q
 from .forms import CommentForm
 from django.contrib import messages
-
+# TODO 'Back to posts button on blog detail could be replicated elsewhere.
+# TODO Does going back to blog list preserve page number?
 
 def post_list(request):
     posts = Post.objects.filter(status='published').order_by('-published_date')

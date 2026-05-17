@@ -2,6 +2,7 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 from django.contrib.messages import constants as messages
+# TODO How do I automatically resize images on upload?
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }

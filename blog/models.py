@@ -42,7 +42,8 @@ class Post(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-# TODO Add Image to POST (and Page?)
+    # TODO Add Image to POST (and Page?)
+    # TODO Category should have automatic slug field.
     content = RichTextUploadingField()
     excerpt = models.TextField(blank=True)
 
@@ -52,6 +53,11 @@ class Post(models.Model):
     status = models.CharField(max_length=10,
                               choices=STATUS_CHOICES,
                               default='draft')
+    image = models.ImageField(
+        upload_to='posts/',
+        blank=True,
+        null=True
+    )
     allow_comments = models.BooleanField(default=True)
 
     created = models.DateTimeField(auto_now_add=True)
