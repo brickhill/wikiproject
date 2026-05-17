@@ -77,6 +77,10 @@ def page_std_detail(request, keyword):
                 request,
                 'SUCCESS'
             )
+    messages.debug(
+        request,
+        "What is this?"
+    )
     messages.error(
     request,
     'Something went wrong.'
