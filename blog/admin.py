@@ -1,6 +1,8 @@
 # admin.py
 from django.contrib import admin
 from .models import Post, Page, Series, Category, Comment
+
+
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     list_display = ('title', 'status', 'created')
@@ -8,12 +10,14 @@ class PostAdmin(admin.ModelAdmin):
     list_filter = ('status', 'categories', 'series')
     search_fields = ('title', 'content')
 
+
 @admin.register(Page)
 class PageAdmin(admin.ModelAdmin):
     list_display = ('title', 'keyword')
-    prepopulated_fields =  {"slug": ("title",)}
+    prepopulated_fields = {"slug": ("title",)}
     list_filter = ('created',)
     search_fields = ('title', 'content')
+
 
 admin.site.register(Series)
 admin.site.register(Category)

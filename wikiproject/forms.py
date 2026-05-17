@@ -1,11 +1,9 @@
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 
+
 class RegisterForm(UserCreationForm):
     pass
-
-
-from django import forms
 
 
 class ContactForm(forms.Form):

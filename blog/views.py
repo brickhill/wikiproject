@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404,redirect
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, Page, Series, Comment
 from django.db.models import Q
 from .forms import CommentForm
@@ -9,9 +9,11 @@ def post_list(request):
     posts = Post.objects.filter(status='published').order_by('-published_date')
     title = "Blog Posts"
     return render(request, 'blog/post_list.html', {'posts': posts,
-                                                   'title': title })
+                                                   'title': title})
 
 # TODO What to do if no Categories defined?
+
+
 def post_detail(request, slug):
 
     post = get_object_or_404(
@@ -66,10 +68,12 @@ def post_detail(request, slug):
 # TODO Add comment mentions.
 # TODO Add avator to user.
 
+
 def page_detail(request, slug):
 
     page = get_object_or_404(Page, slug=slug)
     return render(request, 'blog/page.html', {'page': page})
+
 
 def page_std_detail(request, keyword):
     # TODO Blog page on flash messages.
@@ -82,18 +86,20 @@ def page_std_detail(request, keyword):
         "What is this?"
     )
     messages.error(
-    request,
-    'Something went wrong.'
+                   request,
+                   'Something went wrong.'
     )
     messages.warning(request, 'Be careful.')
     messages.info(request, 'FYI...')
     page = get_object_or_404(Page, keyword=keyword)
     return render(request, 'blog/page.html', {'page': page})
 
+
 def series_detail(request, slug):
     series = get_object_or_404(Series, slug=slug)
     posts = Post.objects.filter(series=series, status='published')
-    return render(request, 'blog/series.html', {'series': series, 'posts': posts})
+    return render(request, 'blog/series.html',
+                  {'series': series, 'posts': posts})
 
 
 def search(request):

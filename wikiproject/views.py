@@ -12,6 +12,8 @@ from django.conf import settings
 
 # TODO Page content should use ckeditor
 # TODO Don't die if std page is not present.
+
+
 def home(request):
     page = get_object_or_404(Page, keyword='home')
     context = {
@@ -38,6 +40,7 @@ def member(request):
 
     return render(request, "member.html", context)
 
+
 def contact(request):
 
     if request.method == 'POST':
@@ -53,11 +56,11 @@ def contact(request):
 
             full_message = f"""
                             From: {name}
+                            Subject: {subject}
                             Email: {email}
 
                             {message}
             """
-
 
             resend.api_key = settings.RESEND_API_KEY
 
@@ -68,10 +71,9 @@ def contact(request):
                                     "html": full_message
                                     })
 
-
             messages.success(
                 request,
-                'Message sent successfully.'
+                f'Message sent successfully:{r}.'
             )
 
             return redirect('contact')
@@ -97,4 +99,3 @@ def register(request):
         form = RegisterForm()
 
     return render(request, 'registration/register.html', {'form': form})
-
