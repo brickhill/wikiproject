@@ -18,7 +18,8 @@ def home(request):
     context = {
         "title": page.title,
         "content": page.content,
-        "image": page.image
+        "image": page.image,
+        "image_title": "TBA"
     }
     return render(request, "home.html", context)
 
