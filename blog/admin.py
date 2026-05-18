@@ -5,7 +5,7 @@ from .models import Post, Page, Series, Category, Comment
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'status', 'created')
+    list_display = ('title', 'status', 'created', 'published_date')
     prepopulated_fields = {"slug": ("title",)}
     list_filter = ('status', 'categories', 'series')
     search_fields = ('title', 'content')

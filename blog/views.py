@@ -58,7 +58,6 @@ def post_detail(request, slug):
         'title': post.title,
         'form': form
     })
-# TODO Spruce up blog detail page.
 # TODO Only show approved comments.
 # TODO Add comment rate limiting.
 # TODO Add comment CAPTCHCA
@@ -68,6 +67,7 @@ def post_detail(request, slug):
 # TODO Add comment notifications.
 # TODO Add comment mentions.
 # TODO Add avator to user.
+# TODO Image (post and page) should have a title for alt text.
 
 
 def page_detail(request, slug):

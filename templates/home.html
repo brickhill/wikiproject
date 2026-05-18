@@ -9,7 +9,11 @@
 
 </div>
 <div class="container-fluid">
-    <h1>{{ title }}</h1>
-    {{ content }}
+    <h1>{{ title|safe }}</h1>
+    {{ content|safe }}
+    {% if image %}
+    <img src="{{ image.url }}"
+         alt="{{ image.title }}">
+{% endif %}
 </div>
 {% endblock %}

@@ -10,7 +10,6 @@ from django.conf import settings
 # MAJOR Add SEO to posts and pages.
 # MAJOR 'My account' to change username, password etc.
 
-# TODO Page content should use ckeditor
 # TODO Don't die if std page is not present.
 
 
@@ -19,6 +18,7 @@ def home(request):
     context = {
         "title": page.title,
         "content": page.content,
+        "image": page.image
     }
     return render(request, "home.html", context)
 
