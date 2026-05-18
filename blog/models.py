@@ -42,7 +42,6 @@ class Post(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    # TODO Add Image to POST (and Page?)
     # TODO Category should have automatic slug field.
     content = RichTextUploadingField()
     excerpt = models.TextField(blank=True)
@@ -83,7 +82,7 @@ class Page(models.Model):
     ]
     title = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
-    content = models.TextField()
+    content = RichTextUploadingField()
     # TODO Contact form email is a bit rubbish.
     keyword = models.CharField(
         max_length=7,
@@ -92,6 +91,11 @@ class Page(models.Model):
         blank=True,
         unique=True,
         help_text="Keyword"
+    )
+    image = models.ImageField(
+        upload_to='posts/',
+        blank=True,
+        null=True
     )
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

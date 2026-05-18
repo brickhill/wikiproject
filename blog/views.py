@@ -59,7 +59,7 @@ def post_detail(request, slug):
         'form': form
     })
 # TODO Spruce up blog detail page.
-# TODO Only show approved commments.
+# TODO Only show approved comments.
 # TODO Add comment rate limiting.
 # TODO Add comment CAPTCHCA
 # TODO Add comment Akismet
