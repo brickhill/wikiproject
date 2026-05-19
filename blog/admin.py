@@ -1,6 +1,6 @@
 # admin.py
 from django.contrib import admin
-from .models import Post, Page, Series, Category, Comment
+from .models import Post, Page, Series, Category, Comment, SeriesPost
 
 
 @admin.register(Post)
@@ -18,6 +18,11 @@ class PageAdmin(admin.ModelAdmin):
     list_filter = ('created',)
     search_fields = ('title', 'content')
 
+@admin.register(SeriesPost)
+class SeriesPostAdmin(admin.ModelAdmin):
+    list_display = ('series', 'post', 'priority')
+    list_filter = ('post',)
+    search_fields = ('post',)
 
 admin.site.register(Series)
 admin.site.register(Category)

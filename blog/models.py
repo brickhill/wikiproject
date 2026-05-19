@@ -143,3 +143,12 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'Comment by {self.user}'
+
+
+class SeriesPost(models.Model):
+    series = models.ForeignKey(Series, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    priority = models.PositiveIntegerField()
+
+    class Meta:
+        verbose_name = 'Series/Post'
