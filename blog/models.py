@@ -47,7 +47,7 @@ class Post(models.Model):
     excerpt = models.TextField(blank=True)
 
     categories = models.ManyToManyField(Category, blank=True)
-    series = models.ManyToManyField(Series, blank=True)
+    # series = models.ManyToManyField(Series, through="SeriesPost", blank=True)
 
     status = models.CharField(max_length=10,
                               choices=STATUS_CHOICES,
@@ -145,10 +145,10 @@ class Comment(models.Model):
         return f'Comment by {self.user}'
 
 
-class SeriesPost(models.Model):
-    series = models.ForeignKey(Series, on_delete=models.CASCADE)
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    priority = models.PositiveIntegerField()
+# class SeriesPost(models.Model):
+#     series = models.ForeignKey(Series, on_delete=models.CASCADE)
+#     post = models.ForeignKey(Post, on_delete=models.CASCADE)
+#     priority = models.PositiveIntegerField()
 
-    class Meta:
-        verbose_name = 'Series/Post'
+#     class Meta:
+#         verbose_name = 'Series/Post'
