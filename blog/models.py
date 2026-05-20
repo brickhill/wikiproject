@@ -99,8 +99,16 @@ class Page(models.Model):
         blank=True,
         null=True
     )
+    order = models.PositiveIntegerField(
+        default=0,
+        editable=False,
+        db_index=True
+    )
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['order']
 
     def save(self, *args, **kwargs):
         if not self.slug:

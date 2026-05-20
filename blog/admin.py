@@ -1,5 +1,6 @@
 # admin.py
 from django.contrib import admin
+from adminsortable2.admin import SortableAdminMixin
 from .models import Post, Page, Series, Category, Comment # , SeriesPost
 
 
@@ -12,11 +13,15 @@ class PostAdmin(admin.ModelAdmin):
 
 
 @admin.register(Page)
-class PageAdmin(admin.ModelAdmin):
-    list_display = ('title', 'keyword')
+class PageAdmin(SortableAdminMixin, admin.ModelAdmin):
+    # TODO Draggable doesn't update the page on dragging.
+    list_display = ['title', 'display_order', 'keyword', 'order']
     prepopulated_fields = {"slug": ("title",)}
     list_filter = ('created',)
     search_fields = ('title', 'content')
+    @admin.display(description="Order")
+    def display_order(self, obj):
+        return obj.order
 
 # @admin.register(SeriesPost)
 # class SeriesPostAdmin(admin.ModelAdmin):
