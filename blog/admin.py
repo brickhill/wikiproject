@@ -1,7 +1,7 @@
 # admin.py
 from django.contrib import admin
 from adminsortable2.admin import SortableAdminMixin
-from .models import Post, Page, Series, Category, Comment # , SeriesPost
+from .models import Post, Page, Series, Category, Comment, SeriesPost
 
 
 @admin.register(Post)
@@ -23,12 +23,21 @@ class PageAdmin(SortableAdminMixin, admin.ModelAdmin):
     def display_order(self, obj):
         return obj.order
 
-# @admin.register(SeriesPost)
-# class SeriesPostAdmin(admin.ModelAdmin):
-#     list_display = ('series', 'post', 'priority')
-#     list_filter = ('post',)
-#     search_fields = ('post',)
+@admin.register(SeriesPost)
+class SeriesPostAdmin(SortableAdminMixin,admin.ModelAdmin):
+    list_display = ('series', 'post', 'display_order', 'order')
+    list_filter = ('post', 'series')
+    search_fields = ('post',)
+    @admin.display(description="Order")
+    def display_order(self, obj):
+        return obj.order
 
 admin.site.register(Series)
+class SeriesAdmin(admin.ModelAdmin):
+    list_display = ['name', 'slug']
+    prepopulated_fields = {"slug": ("name",)}
+    search_fields = ('name',)
+
+  
 admin.site.register(Category)
 admin.site.register(Comment)
