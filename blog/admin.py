@@ -32,12 +32,16 @@ class SeriesPostAdmin(SortableAdminMixin,admin.ModelAdmin):
     def display_order(self, obj):
         return obj.order
 
-admin.site.register(Series)
+@admin.register(Series)
 class SeriesAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug']
     prepopulated_fields = {"slug": ("name",)}
     search_fields = ('name',)
 
   
-admin.site.register(Category)
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    fields = ("name", "slug")
+    prepopulated_fields = {"slug": ("name",)}
+
 admin.site.register(Comment)

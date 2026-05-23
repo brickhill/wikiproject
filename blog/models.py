@@ -25,6 +25,11 @@ class Category(models.Model):
     name = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
+
     class Meta:
         ordering = ['name']
         verbose_name_plural = "Categories"
@@ -41,8 +46,7 @@ class Post(models.Model):
 
     title = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-    # TODO Category should have automatic slug field.
+    author = models.ForeignKey(User, on_delete=models.CASCADE)  
     content = RichTextUploadingField()
     excerpt = models.TextField(blank=True)
 
