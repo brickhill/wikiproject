@@ -14,6 +14,17 @@
 {% endblock header %}
 {% include "includes/flash.html" %}
 {% block content %}
+    {% if content1 %}
+        <div class="container-fluid">
+            <div class="row">
+                <aside class="col-md-3">{% block left %}{% endblock %}</aside>
+                <main class="col-md-6">
+                    {% block content1 %}{% endblock %}
+                </main>
+                <aside class="col-md-3">{% block aside %}{% endblock %}</aside>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}
 {% include "includes/cookies.html" %}
 {% include "includes/footer.html" %}

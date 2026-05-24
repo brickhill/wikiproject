@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 # MAJOR Mail list.
+# TODO Slug doesn't work on PA for category or series.
 
 urlpatterns = [
     path('', views.post_list, name='post_list'),
