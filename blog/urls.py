@@ -11,3 +11,15 @@ urlpatterns = [
     path('series/<slug:slug>/', views.series_detail, name='series_detail'),
     path('search/', views.search, name='search'),
 ]
+
+
+''''
+Blog:
+page/post/[slug]
+<a href="{% url 'post_detail' post.slug %}">
+
+page/series/[slug]
+<a href="{% url 'series_detail' series.slug %}">
+
+
+'''

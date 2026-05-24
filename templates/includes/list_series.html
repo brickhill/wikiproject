@@ -1,0 +1,13 @@
+<!-- templates/includes/recent_posts.html -->
+<div class="card mb-3">
+    <div class="card-header">Blog Series</div>
+    <ul class="list-group list-group-flush">
+        {% for series in list_series %}
+            <li class="list-group-item">
+                <a href="{% url 'series_detail' series.slug %}">
+                    {{ series.name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

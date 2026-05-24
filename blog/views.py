@@ -22,7 +22,7 @@ def post_detail(request, slug):
         slug=slug,
         status='published'
     )
-
+# TODO comments unknown.
     comments = post.comments.filter(
         active=True,
         parent__isnull=True
@@ -97,10 +97,15 @@ def page_std_detail(request, keyword):
 
 
 def series_detail(request, slug):
+    print("SERIES DETAIL")
     series = get_object_or_404(Series, slug=slug)
-    posts = Post.objects.filter(series=series, status='published')
-    return render(request, 'blog/series.html',
-                  {'series': series, 'posts': posts})
+    posts = Post.objects.all()
+    context = {
+        "series": series,
+        "content1": "CONTENT1",
+        "posts": posts
+    }
+    return render(request, 'blog/series_detail.html', context)
 
 
 def search(request):

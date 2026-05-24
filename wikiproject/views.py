@@ -25,7 +25,13 @@ def home(request):
 
 
 def about(request):
-    context = {}
+    context = {"content1": """
+    <div class="container-fluid">
+        <h1>About SBS</h1>
+        <p>A load of stuff about SBS.</p>
+    </div>
+               """
+               }
     return render(request, "about.html", context)
 
 
@@ -100,3 +106,17 @@ def register(request):
         form = RegisterForm()
 
     return render(request, 'registration/register.html', {'form': form})
+
+# def series_detail(request):
+#     print("NOB")
+#     exit()
+
+def series(request):
+    title = "Series"
+    context = {
+        "content1": "<h1>Series</h1>",
+        "left": "stuff on the left",
+        "title": title
+    }
+
+    return render(request, "series.html", context)

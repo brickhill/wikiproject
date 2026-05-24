@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}
+{{ title }}
+{% endblock %}
+{% block content1 %}
+<div class="container-fluid">
+
+    <h1 class="mb-4">{{ series.name }}</h1>
+    
+    <div class="row">
+        {% for post in posts %}
+            <div>
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <a href="{% url 'post_detail' post.slug %}">
+                            <h5 class="card-title">{{ post.title }}</h5></a>
+                        <p class="card-text">
+                            {{ post.content|safe }}
+                        </p>
+                    </div>
+    
+                    <div class="card-footer text-muted">
+                        {{ post.created|date:"M d, Y" }} : {{ post.author }}
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p>No posts yet.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+{% block aside %}
+<h1>ASIDE HERE</h1>
+{% endblock %}
+{% block left %}
+<h1>LEFT SIDE</h1>
+{% endblock %}
