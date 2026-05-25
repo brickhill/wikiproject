@@ -6,6 +6,7 @@ from django.contrib import messages
 # TODO 'Back to posts button on blog detail could be replicated elsewhere.
 # TODO Does going back to blog list preserve page number?
 
+
 def post_list(request):
     posts = Post.objects.filter(status='published').order_by('-published_date')
     title = "Blog Posts"
@@ -110,7 +111,6 @@ def series_detail(request, slug):
 
 def search(request):
     query = request.GET.get('q')
-
     results = Post.objects.filter(
         Q(title__icontains=query) |
         Q(content__icontains=query)
