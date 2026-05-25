@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Post, Page, Series, Comment
+from .models import Post, Page, Series, Comment, SeriesPost
 from django.db.models import Q
 from .forms import CommentForm
 from django.contrib import messages
@@ -98,9 +98,9 @@ def page_std_detail(request, keyword):
 
 
 def series_detail(request, slug):
-    print("SERIES DETAIL")
     series = get_object_or_404(Series, slug=slug)
-    posts = Post.objects.all()
+    posts = SeriesPost.objects.filter(
+        series=series).select_related("post").order_by("order")
     context = {
         "series": series,
         "content1": "CONTENT1",

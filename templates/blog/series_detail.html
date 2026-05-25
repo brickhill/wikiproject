@@ -12,10 +12,11 @@
             <div>
                 <div class="card shadow-sm h-100">
                     <div class="card-body">
-                        <a href="{% url 'post_detail' post.slug %}">
-                            <h5 class="card-title">{{ post.title }}</h5></a>
+                        <a href="{% url 'post_detail' post.post.slug %}">
+                            <p>Order:{{ post.order }}</p>
+                            <h5 class="card-title">{{ post.post.title }}</h5></a>
                         <p class="card-text">
-                            {{ post.content|safe }}
+                            {{ post.post.content|safe }}
                         </p>
                     </div>
     
