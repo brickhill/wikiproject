@@ -6,7 +6,6 @@ from blog.models import Page
 
 import resend
 from django.conf import settings
-# XXX List of series in a sidebar.
 # MAJOR Add SEO to posts and pages.
 # MAJOR 'My account' to change username, password etc.
 

@@ -25,9 +25,16 @@
                 <div class="card-body p-4 p-md-5">
 
                     <!-- Category -->
-                    <span class="badge bg-primary mb-3 px-3 py-2">
-                         <p>{{ post.categories }}</p>
-                    </span>
+                     {% if post.categories.count > 0 %}
+                        <span class="badge bg-primary mb-3 px-3 py-2">
+                            {% for p in post.categories.all %}
+                                {% if forloop.counter > 1 %}
+                                    ,
+                                {% endif %}
+                                {{ p }}
+                            {% endfor %}
+                        </span>
+                    {% endif %}
 
                     <!-- Title -->
                     <h1 class="display-5 fw-bold mb-3">

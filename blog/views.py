@@ -5,7 +5,7 @@ from .forms import CommentForm
 from django.contrib import messages
 # TODO 'Back to posts button on blog detail could be replicated elsewhere.
 # TODO Does going back to blog list preserve page number?
-
+# TODO Items in category tree should hyper to all items in that category.
 
 def post_list(request):
     posts = Post.objects.filter(status='published').order_by('-published_date')
@@ -25,11 +25,11 @@ def post_detail(request, slug, source=None):
     )
 # TODO comments unknown.
     comments = Comment.objects.filter(
-        post = post,
+        post=post,
         active=True,
         parent__isnull=True
     )
-    
+
     # = post.comments.filter(
     #     active=True,
     #     parent__isnull=True
