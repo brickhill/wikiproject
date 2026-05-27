@@ -13,7 +13,7 @@ class PostAdmin(admin.ModelAdmin):
 
 
 @admin.register(Page)
-class PageAdmin(SortableAdminMixin, admin.ModelAdmin):
+class PageAdmin(SortableAdminMixin, admin.ModelAdmin):  # type: ignore[misc]
     # TODO Draggable doesn't update the page on dragging.
     list_display = ['title', 'display_order', 'keyword', 'order']
     prepopulated_fields = {"slug": ("title",)}
@@ -24,7 +24,7 @@ class PageAdmin(SortableAdminMixin, admin.ModelAdmin):
         return obj.order
 
 @admin.register(SeriesPost)
-class SeriesPostAdmin(SortableAdminMixin,admin.ModelAdmin):
+class SeriesPostAdmin(SortableAdminMixin,admin.ModelAdmin): # type: ignore[misc]
     list_display = ('series', 'post', 'display_order', 'order')
     list_filter = ('post', 'series')
     search_fields = ('post',)

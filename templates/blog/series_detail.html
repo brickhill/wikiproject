@@ -12,7 +12,7 @@
             <div>
                 <div class="card shadow-sm h-100">
                     <div class="card-body">
-                        <a href="{% url 'post_detail' post.post.slug %}">
+                        <a href="{% url 'post_detail2' slug=post.post.slug source='NOB' %}">
                             <p>Order:{{ post.order }}</p>
                             <h5 class="card-title">{{ post.post.title }}</h5></a>
                         <p class="card-text">

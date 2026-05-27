@@ -16,18 +16,24 @@ def post_list(request):
 # TODO What to do if no Categories defined?
 
 
-def post_detail(request, slug):
-
+def post_detail(request, slug, source=None):
+    print(f"Source:{source}")
     post = get_object_or_404(
         Post,
         slug=slug,
         status='published'
     )
 # TODO comments unknown.
-    comments = post.comments.filter(
+    comments = Comment.objects.filter(
+        post = post,
         active=True,
         parent__isnull=True
     )
+    
+    # = post.comments.filter(
+    #     active=True,
+    #     parent__isnull=True
+    # )
 
     form = CommentForm()
 
