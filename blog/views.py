@@ -14,10 +14,13 @@ def post_list(request):
                                                    'title': title})
 
 # TODO What to do if no Categories defined?
-
+# TODO Change 'My website' to SBS.
 
 def post_detail(request, slug, source=None):
-    print(f"Source:{source}")
+    print(f"Source(views.py):{source}")
+    if source is None:
+        print("NORMAL BLOG")
+        source = "SOURCE1"
     post = get_object_or_404(
         Post,
         slug=slug,
@@ -28,11 +31,6 @@ def post_detail(request, slug, source=None):
         active=True,
         parent__isnull=True
     )
-
-    # = post.comments.filter(
-    #     active=True,
-    #     parent__isnull=True
-    # )
 
     form = CommentForm()
 
@@ -63,7 +61,7 @@ def post_detail(request, slug, source=None):
         'comments': comments,
         'title': post.title,
         'form': form,
-        # 'left': "left side",
+        'source': source,
         'content1': True
     })
 # TODO Only show approved comments.
@@ -107,13 +105,15 @@ def page_std_detail(request, keyword):
 
 
 def series_detail(request, slug):
+    print("SERIES DETAIL")
     series = get_object_or_404(Series, slug=slug)
     posts = SeriesPost.objects.filter(
         series=series).select_related("post").order_by("order")
     context = {
         "series": series,
         "content1": "CONTENT1",
-        "posts": posts
+        "posts": posts,
+        "source": "SOURCE2"
     }
     return render(request, 'blog/series_detail.html', context)
 

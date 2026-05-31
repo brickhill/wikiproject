@@ -106,9 +106,6 @@ def register(request):
 
     return render(request, 'registration/register.html', {'form': form})
 
-# def series_detail(request):
-#     print("NOB")
-#     exit()
 
 def experiment(request):
     title = "Experiment"

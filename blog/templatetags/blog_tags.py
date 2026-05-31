@@ -14,3 +14,9 @@ def list_series():
     # TODO Series should have 'draft/published' flag and a priority.
     series = Series.objects.all().order_by('slug')
     return {'list_series': series}
+
+@register.inclusion_tag('includes/blog_panel.html')
+def blog_panel(source="ZZZ"):
+    print(f"SOURCE:{source}")
+    context = {"source": source}
+    return context 
