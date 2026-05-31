@@ -2,134 +2,139 @@
 {% block title %}
 {{ title }}
 {% endblock %}
-{% block content %}
-
+{% block content1 %}
 <div class="container-fluid">
+    <div class="container py-5">
 
-<div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
 
-    <div class="row justify-content-center">
-        <div class="col-lg-8">
+                <!-- Post Card -->
+                <article class="card border-0 shadow-sm rounded-4 overflow-hidden">
 
-            <!-- Post Card -->
-            <article class="card border-0 shadow-sm rounded-4 overflow-hidden">
-
-                <!-- Hero Image -->
-                {% if post.image %}
-                <img src="{{ post.image.url }}"
-                     class="img-fluid"
-                     style="max-height:450px; object-fit:cover;"
-                     alt="{{ post.title }}">
-                {% endif %}
-
-                <div class="card-body p-4 p-md-5">
-
-                    <!-- Category -->
-                     {% if post.categories.count > 0 %}
-                        <span class="badge bg-primary mb-3 px-3 py-2">
-                            {% for p in post.categories.all %}
-                                {% if forloop.counter > 1 %}
-                                    ,
-                                {% endif %}
-                                {{ p }}
-                            {% endfor %}
-                        </span>
+                    <!-- Hero Image -->
+                    {% if post.image %}
+                    <img src="{{ post.image.url }}"
+                        class="img-fluid"
+                        style="max-height:450px; object-fit:cover;"
+                        alt="{{ post.title }}">
                     {% endif %}
 
-                    <!-- Title -->
-                    <h1 class="display-5 fw-bold mb-3">
-                        {{ post.title }}
-                    </h1>
+                    <div class="card-body p-4 p-md-5">
 
-                    <!-- Meta -->
-                    <div class="text-muted mb-4 small">
-                        Posted by {{ post.author }}
-                        ·
-                        {{ post.created_at|date:"F j, Y" }}
+                        <!-- Category -->
+                        {% if post.categories.count > 0 %}
+                            <span class="badge bg-primary mb-3 px-3 py-2">
+                                {% for p in post.categories.all %}
+                                    {% if forloop.counter > 1 %}
+                                        ,
+                                    {% endif %}
+                                    {{ p }}
+                                {% endfor %}
+                            </span>
+                        {% endif %}
+
+                        <!-- Title -->
+                        <h1 class="display-5 fw-bold mb-3">
+                            {{ post.title }}
+                        </h1>
+
+                        <!-- Meta -->
+                        <div class="text-muted mb-4 small">
+                            Posted by {{ post.author }}
+                            ·
+                            {{ post.created_at|date:"F j, Y" }}
+                        </div>
+
+                        <!-- Intro -->
+                        {% if post.excerpt %}
+                        <p class="lead text-secondary mb-4">
+                            {{ post.excerpt }}
+                        </p>
+                        {% endif %}
+
+                        <!-- Content -->
+                        <div class="post-content fs-5 lh-lg">
+                            {{ post.content|safe }}
+                        </div>
+
                     </div>
+                </article>
 
-                    <!-- Intro -->
-                    {% if post.excerpt %}
-                    <p class="lead text-secondary mb-4">
-                        {{ post.excerpt }}
-                    </p>
-                    {% endif %}
-
-                    <!-- Content -->
-                    <div class="post-content fs-5 lh-lg">
-                        {{ post.content|safe }}
-                    </div>
-
+                <!-- Back Link -->
+                <div class="mt-4">
+                    <a href="{% url 'post_list' %}"
+                    class="btn btn-outline-secondary rounded-pill px-4">
+                        ← Back to posts
+                    </a>
                 </div>
-            </article>
 
-            <!-- Back Link -->
-            <div class="mt-4">
-                <a href="{% url 'post_list' %}"
-                   class="btn btn-outline-secondary rounded-pill px-4">
-                    ← Back to posts
-                </a>
             </div>
+        </div>
+
+    </div>
+    {% if post.allow_comments %}
+        <h3>Comments</h3>
+
+        {% if user.is_authenticated %}
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button type="submit"
+                    class="btn btn-primary btn-sm">
+                Post Comment
+            </button>
+        </form>
+
+        {% else %}
+
+        <p>
+            <a href="{% url 'login' %}">
+                Sign in
+            </a>
+            to comment.
+        </p>
+
+        {% endif %}
+
+        <div class="mt-4">
+
+            {% for comment in comments %}
+                {% include "blog/comment.html" with comment=comment level=0 %}
+            {% empty %}
+                <p>No comments yet.</p>
+            {% endfor %}
 
         </div>
-    </div>
+        <script>
+        function showReplyForm(commentId) {
 
-</div>
-{% if post.allow_comments %}
-    <h3>Comments</h3>
+            const form = document.getElementById(
+                'reply-form-' + commentId
+            );
 
-    {% if user.is_authenticated %}
-
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-
-        <button type="submit"
-                class="btn btn-primary btn-sm">
-            Post Comment
-        </button>
-    </form>
-
-    {% else %}
-
-    <p>
-        <a href="{% url 'login' %}">
-            Sign in
-        </a>
-        to comment.
-    </p>
-
+            if (form.style.display === 'none') {
+                form.style.display = 'block';
+            } else {
+                form.style.display = 'none';
+            }
+        }
+        </script>
     {% endif %}
 
-    <div class="mt-4">
+    <form method="get" action="{% url 'search' %}">
+        <input type="text" name="q" placeholder="Search..."> 
+        <button type="submit" class="btn btn-primary btn-lg px-4 py-2 shadow">Search</button>
 
-        {% for comment in comments %}
-            {% include "blog/comment.html" with comment=comment level=0 %}
-        {% empty %}
-            <p>No comments yet.</p>
-        {% endfor %}
-
-    </div>
-    <script>
-    function showReplyForm(commentId) {
-
-        const form = document.getElementById(
-            'reply-form-' + commentId
-        );
-
-        if (form.style.display === 'none') {
-            form.style.display = 'block';
-        } else {
-            form.style.display = 'none';
-        }
-    }
-    </script>
-{% endif %}
-
-<form method="get" action="{% url 'search' %}">
-    <input type="text" name="q" placeholder="Search..."> 
-    <button type="submit" class="btn btn-primary btn-lg px-4 py-2 shadow">Search</button>
-
-</form>
+    </form>
 </div>
 {% endblock %}
+{% block aside %}
+<h1>Aside</h1>
+{% endblock %}
+{% block left %}
+<h1>Left</h1>
+{% endblock %}
+

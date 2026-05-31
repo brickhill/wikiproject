@@ -23,7 +23,6 @@ def post_detail(request, slug, source=None):
         slug=slug,
         status='published'
     )
-# TODO comments unknown.
     comments = Comment.objects.filter(
         post=post,
         active=True,
@@ -63,7 +62,9 @@ def post_detail(request, slug, source=None):
         'post': post,
         'comments': comments,
         'title': post.title,
-        'form': form
+        'form': form,
+        # 'left': "left side",
+        'content1': True
     })
 # TODO Only show approved comments.
 # TODO Add comment rate limiting.
@@ -75,6 +76,8 @@ def post_detail(request, slug, source=None):
 # TODO Add comment mentions.
 # TODO Add avator to user.
 # TODO Image (post and page) should have a title for alt text.
+# TODO Add 'left' to blog detail.
+# TODO Add 'aside' to blog detail.
 
 
 def page_detail(request, slug):

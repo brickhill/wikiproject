@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from .views import home, about, register, member, contact
+from .views import home, about, register, member, contact, experiment
 from django.conf import settings
 from django.conf.urls.static import static
 # TODO How to get rid of ckeditor warning message.
@@ -16,6 +16,7 @@ urlpatterns = [
     path("ckeditor/", include("ckeditor_uploader.urls")),
     path('cookies/', include('cookie_consent.urls')),
     path('contact/', contact, name='contact'),
+    path('experiment/', experiment, name='experiment')
 
 ]
 if settings.DEBUG:
