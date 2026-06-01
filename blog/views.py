@@ -7,6 +7,7 @@ from django.contrib import messages
 # TODO Does going back to blog list preserve page number?
 # TODO Items in category tree should hyper to all items in that category.
 
+
 def post_list(request):
     posts = Post.objects.filter(status='published').order_by('-published_date')
     title = "Blog Posts"
@@ -16,11 +17,10 @@ def post_list(request):
 # TODO What to do if no Categories defined?
 # TODO Change 'My website' to SBS.
 
-def post_detail(request, slug, source=None):
-    print(f"Source(views.py):{source}")
-    if source is None:
+
+def post_detail(request, slug, series=None):
+    if series is None:
         print("NORMAL BLOG")
-        source = "SOURCE1"
     post = get_object_or_404(
         Post,
         slug=slug,
@@ -61,8 +61,7 @@ def post_detail(request, slug, source=None):
         'comments': comments,
         'title': post.title,
         'form': form,
-        'series': None,
-        'source': source,
+        'series': series,
         'content1': True
     })
 # TODO Only show approved comments.
@@ -114,7 +113,6 @@ def series_detail(request, slug):
         "series": series,
         "content1": "CONTENT1",
         "posts": posts,
-        "source": "SOURCE2"
     }
     return render(request, 'blog/series_detail.html', context)
 

@@ -4,6 +4,7 @@ from django.utils.text import slugify
 from ckeditor_uploader.fields import RichTextUploadingField
 from blog.helpers import resize
 
+
 class Series(models.Model):
     name = models.CharField(max_length=200)
     slug = models.SlugField(unique=True)
@@ -22,6 +23,8 @@ class Series(models.Model):
 
 
 class Category(models.Model):
+    # TODO Make Category hierarchical.
+    # TODO 'Back to Posts' should be different if viewing a series.
     name = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
 
@@ -46,7 +49,7 @@ class Post(models.Model):
 
     title = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)  
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     content = RichTextUploadingField()
     excerpt = models.TextField(blank=True)
 
@@ -72,7 +75,6 @@ class Post(models.Model):
             self.slug = slugify(self.title)
         super().save(*args, **kwargs)
         resize(self.image, width=600)
-
 
     def __str__(self):
         return self.title
@@ -168,4 +170,3 @@ class SeriesPost(models.Model):
 
     def __str__(self):
         return f"{self.series}/{self.post}"
-

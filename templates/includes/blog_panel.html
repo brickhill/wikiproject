@@ -1,11 +1,13 @@
 <!-- templates/includes/blog_panel.html -->
 <div class="card mb-3">
-    <div class="card-header">Blog Panel</div>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-            <p>SOURCE:{{ source }}</p>
-            <p>ITEM: {{ post }}</p>
-            <p>SERIES: {{ series }}</p>
-        </li>
-    </ul>
+    {% if series %}
+        <div class="card-header">{{ series }}</div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <p>{{ post }}</p>
+            </li>
+        </ul>
+    {% else %}
+        <div class="card-header">BLOG POST</div>
+    {% endif %}
 </div>
