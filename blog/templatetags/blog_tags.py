@@ -16,7 +16,7 @@ def list_series():
     return {'list_series': series}
 
 @register.inclusion_tag('includes/blog_panel.html')
-def blog_panel(source="ZZZ"):
+def blog_panel(source=None, post=None, series=None):
     print(f"SOURCE:{source}")
-    context = {"source": source}
+    context = {"source": source, "post": post, "series": series}
     return context 

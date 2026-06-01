@@ -61,6 +61,7 @@ def post_detail(request, slug, source=None):
         'comments': comments,
         'title': post.title,
         'form': form,
+        'series': None,
         'source': source,
         'content1': True
     })
