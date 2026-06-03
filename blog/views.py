@@ -110,7 +110,7 @@ def series_detail(request, slug):
     posts = SeriesPost.objects.filter(
         series=series).select_related("post").order_by("order")
     context = {
-        "series": series,
+        "series": series.slug,
         "content1": "CONTENT1",
         "posts": posts,
     }

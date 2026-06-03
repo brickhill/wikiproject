@@ -3,9 +3,11 @@
     {% if series %}
         <div class="card-header">{{ series }}</div>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-                <p>{{ post }}</p>
-            </li>
+            {% for p in posts %}
+                <li class="list-group-item">
+                    <p>{{ p.post.title }}</p>
+                </li>
+            {% endfor %}
         </ul>
     {% else %}
         <div class="card-header">BLOG POST</div>

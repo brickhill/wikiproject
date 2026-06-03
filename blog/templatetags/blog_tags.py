@@ -1,6 +1,8 @@
 # blog/templatetags/blog_tags.py
 from django import template
 from blog.models import Post, Series
+from django.shortcuts import render, get_object_or_404, redirect
+from blog.models import Post, Page, Series, Comment, SeriesPost
 
 register = template.Library()
 
@@ -17,5 +19,10 @@ def list_series():
 
 @register.inclusion_tag('includes/blog_panel.html')
 def blog_panel(post=None, series=None):
-    context = {"post": post, "series": series}
+    series = get_object_or_404(Series, slug=series)
+    posts = SeriesPost.objects.filter(
+        series=series).select_related("post").order_by("order")
+    for p in posts:
+        print(p.post.title)
+    context = {"posts": posts, "series": series}
     return context 
