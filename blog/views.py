@@ -3,10 +3,6 @@ from .models import Post, Page, Series, Comment, SeriesPost
 from django.db.models import Q
 from .forms import CommentForm
 from django.contrib import messages
-# TODO 'Back to posts button on blog detail could be replicated elsewhere.
-# TODO Does going back to blog list preserve page number?
-# TODO Items in category tree should hyper to all items in that category.
-
 
 def post_list(request):
     posts = Post.objects.filter(status='published').order_by('-published_date')
@@ -14,8 +10,6 @@ def post_list(request):
     return render(request, 'blog/post_list.html', {'posts': posts,
                                                    'title': title})
 
-# TODO What to do if no Categories defined?
-# TODO Change 'My website' to SBS.
 
 
 def post_detail(request, slug, series=None):
@@ -64,18 +58,6 @@ def post_detail(request, slug, series=None):
         'series': series,
         'content1': True
     })
-# TODO Only show approved comments.
-# TODO Add comment rate limiting.
-# TODO Add comment CAPTCHCA
-# TODO Add comment Akismet
-# TODO Add Ajax comments.
-# TODO Add comment upvotes/downvotes
-# TODO Add comment notifications.
-# TODO Add comment mentions.
-# TODO Add avator to user.
-# TODO Image (post and page) should have a title for alt text.
-# TODO Add 'left' to blog detail.
-# TODO Add 'aside' to blog detail.
 
 
 def page_detail(request, slug):
@@ -85,7 +67,6 @@ def page_detail(request, slug):
 
 
 def page_std_detail(request, keyword):
-    # TODO Blog page on flash messages.
     messages.success(
                 request,
                 'SUCCESS'
@@ -123,7 +104,6 @@ def search(request):
         Q(title__icontains=query) |
         Q(content__icontains=query)
     )
-# TODO Search results isn't styled.
     return render(request, 'blog/search.html', {
         'query': query,
         'results': results

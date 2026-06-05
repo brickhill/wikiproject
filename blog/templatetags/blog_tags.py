@@ -19,10 +19,15 @@ def list_series():
 
 @register.inclusion_tag('includes/blog_panel.html')
 def blog_panel(post=None, series=None):
+    print(f"BLOGPOST:{post}")
     series = get_object_or_404(Series, slug=series)
     posts = SeriesPost.objects.filter(
         series=series).select_related("post").order_by("order")
     for p in posts:
         print(p.post.title)
-    context = {"posts": posts, "series": series}
+    context = {"posts": posts, "series": series, "post": post}
+    '''
+    post is current post.
+    posts are all posts in series.
+    '''
     return context 

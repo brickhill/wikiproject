@@ -3,7 +3,6 @@ from django.urls import path, include
 from .views import home, about, register, member, contact, experiment
 from django.conf import settings
 from django.conf.urls.static import static
-# TODO How to get rid of ckeditor warning message.
 urlpatterns = [
     path('', home, name="home"),
     path('admin/', admin.site.urls),

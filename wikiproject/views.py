@@ -6,10 +6,6 @@ from blog.models import Page
 
 import resend
 from django.conf import settings
-# MAJOR Add SEO to posts and pages.
-# MAJOR 'My account' to change username, password etc.
-
-# TODO Don't die if std page is not present.
 
 
 def home(request):
@@ -37,7 +33,6 @@ def about(request):
 @login_required
 def member(request):
     title = "Member"
-    # TODO Add sbsys.co.uk to resend.
     context = {
         "content1": "<h1>Content11</h1>",
         "left": "stuff on the left",

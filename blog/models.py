@@ -23,8 +23,6 @@ class Series(models.Model):
 
 
 class Category(models.Model):
-    # TODO Make Category hierarchical.
-    # TODO 'Back to Posts' should be different if viewing a series.
     name = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
 
@@ -81,7 +79,6 @@ class Post(models.Model):
 
 
 class Page(models.Model):
-    # TODO Add status to page model.
     KEYWORD_CHOICES = [
         ('home', 'Home Page'),
         ('terms', 'Terms & Conditions'),
@@ -91,7 +88,6 @@ class Page(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
     content = RichTextUploadingField()
-    # TODO Contact form email is a bit rubbish.
     keyword = models.CharField(
         max_length=7,
         choices=KEYWORD_CHOICES,

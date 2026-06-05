@@ -5,7 +5,13 @@
         <ul class="list-group list-group-flush">
             {% for p in posts %}
                 <li class="list-group-item">
+                    {% if p.post.slug == post.slug %}
+                        <b>
+                    {% endif %}
                     <p>{{ p.post.title }}</p>
+                    {% if p.post.slug == post.slug %}
+                        </b>
+                    {% endif %}
                 </li>
             {% endfor %}
         </ul>
