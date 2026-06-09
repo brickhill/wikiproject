@@ -3,11 +3,26 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import RegisterForm, ContactForm
 from blog.models import Page
-
+from django.contrib.auth.views import LoginView, LogoutView
 import resend
 from django.conf import settings
 
 
+class MyLoginView(LoginView):
+
+    def form_valid(self, form):
+        messages.success(
+            self.request,
+            f"Welcome back, {form.get_user().first_name or form.get_user().username}!"
+        )
+        return super().form_valid(form)
+
+class MyLogoutView(LogoutView):
+
+    def dispatch(self, request, *args, **kwargs):
+        messages.success(request, "You have been logged out successfully.")
+        return super().dispatch(request, *args, **kwargs)
+    
 def home(request):
     page = get_object_or_404(Page, keyword='home')
     context = {
