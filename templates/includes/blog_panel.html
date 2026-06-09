@@ -2,25 +2,23 @@
 <div class="card mb-3">
     {% if series %}
         <div class="card-header">{{ series }}</div>
-        <ul class="list-group list-group-flush">
+        <ol class="list-group-numbered list-group-flush">
             {% for p in posts %}
                 <li class="list-group-item">
                     {% if p.post.slug == post.slug %}
                         <b>
                     {% endif %}
-                    {% comment %} <p>{{ p.post.title }}</p> {% endcomment %}
-                    <p>
-                        <a href="{% url 'post_detail2' slug=p.post.slug series=series.slug %}">
-                            {{ p.post.title }}
-                        </a>
-                    </p>
+                    <a href="{% url 'post_detail2' slug=p.post.slug series=series.slug %}">
+                        {{ p.post.title }}
+                    </a>
                     {% if p.post.slug == post.slug %}
                         </b>
                     {% endif %}
                 </li>
             {% endfor %}
-        </ul>
+        </ol>
     {% else %}
         <div class="card-header">BLOG POST</div>
+        <p>Maybe put most recent posts?</p>
     {% endif %}
 </div>

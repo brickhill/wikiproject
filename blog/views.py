@@ -20,12 +20,13 @@ def post_detail(request, slug, series=None):
         slug=slug,
         status='published'
     )
+    print("AAA")
     comments = Comment.objects.filter(
         post=post,
         active=True,
         parent__isnull=True
     )
-
+    print("BBB")
     form = CommentForm()
 
     if request.method == 'POST':
@@ -50,6 +51,7 @@ def post_detail(request, slug, series=None):
 
                 return redirect('post_detail', slug=slug)
 
+    print("CCC")
     return render(request, 'blog/post_detail.html', {
         'post': post,
         'comments': comments,

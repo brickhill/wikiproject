@@ -14,18 +14,6 @@
                 Contact Us
             </h1>
 
-            {% if messages %}
-
-                {% for message in messages %}
-
-                    <div class="alert alert-success">
-                        {{ message }}
-                    </div>
-
-                {% endfor %}
-
-            {% endif %}
-
             <form method="post">
 
                 {% csrf_token %}
