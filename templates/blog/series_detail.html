@@ -21,7 +21,7 @@
                     </div>
     
                     <div class="card-footer text-muted">
-                        {{ post.created|date:"M d, Y" }} : {{ post.author }}
+                      {{ post.post.published_date|date:"M d, Y H:m" }} : {{ post.post.author }}
                     </div>
                 </div>
             </div>

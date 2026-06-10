@@ -4,6 +4,7 @@ from django.db.models import Q
 from .forms import CommentForm
 from django.contrib import messages
 
+
 def post_list(request):
     posts = Post.objects.filter(status='published').order_by('-published_date')
     title = "Blog Posts"
@@ -11,22 +12,19 @@ def post_list(request):
                                                    'title': title})
 
 
-
 def post_detail(request, slug, series=None):
-    if series is None:
-        print("NORMAL BLOG")
+    # if series is None:
+    #     print("NORMAL BLOG")
     post = get_object_or_404(
         Post,
         slug=slug,
         status='published'
     )
-    print("AAA")
     comments = Comment.objects.filter(
         post=post,
         active=True,
         parent__isnull=True
     )
-    print("BBB")
     form = CommentForm()
 
     if request.method == 'POST':
@@ -51,7 +49,6 @@ def post_detail(request, slug, series=None):
 
                 return redirect('post_detail', slug=slug)
 
-    print("CCC")
     return render(request, 'blog/post_detail.html', {
         'post': post,
         'comments': comments,
@@ -92,6 +89,9 @@ def series_detail(request, slug):
     series = get_object_or_404(Series, slug=slug)
     posts = SeriesPost.objects.filter(
         series=series).select_related("post").order_by("order")
+    for p in posts:
+        print(f"AUTHOR:{p.post.author}")
+        print(f"CREATED:{p.post.created}")
     context = {
         "series": series.slug,
         "content1": "CONTENT1",

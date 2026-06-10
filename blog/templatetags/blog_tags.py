@@ -1,15 +1,17 @@
 # blog/templatetags/blog_tags.py
 from django import template
-from blog.models import Post, Series
-from django.shortcuts import render, get_object_or_404, redirect
-from blog.models import Post, Page, Series, Comment, SeriesPost
+from django.shortcuts import get_object_or_404
+from blog.models import Post, Series, SeriesPost
 
 register = template.Library()
 
+
 @register.inclusion_tag('includes/recent_posts.html')
 def recent_posts(count=5):
-    posts = Post.objects.filter(status='published').order_by('-published_date')[:count]
+    posts = Post.objects.filter(status='published'). \
+            order_by('-published_date')[:count]
     return {'recent_posts': posts}
+
 
 @register.inclusion_tag('includes/list_series.html')
 def list_series():
@@ -17,23 +19,17 @@ def list_series():
     series = Series.objects.all().order_by('slug')
     return {'list_series': series}
 
+
 @register.inclusion_tag('includes/blog_panel.html')
 def blog_panel(post=None, series=None):
-    print(f"BLOGPOST:{post}")
     if series is not None:
         series = get_object_or_404(Series, slug=series)
-    print("BP1")
     posts = SeriesPost.objects.filter(
         series=series).select_related("post").order_by("order")
-    
-    print("BP2")
 
-    for p in posts:
-        print(p.post.title)
-    print("BP3")
     context = {"posts": posts, "series": series, "post": post}
     '''
     post is current post.
     posts are all posts in series.
     '''
-    return context 
+    return context

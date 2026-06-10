@@ -9,8 +9,8 @@ urlpatterns = [
     path('', home, name="home"),
     path('admin/', admin.site.urls),
     path('about', about, name="about"),
-    path("accounts/login/",MyLoginView.as_view(),name="login"),
-    path("accounts/logout/",MyLogoutView.as_view(),name="logout"),
+    path("accounts/login/", MyLoginView.as_view(), name="login"),
+    path("accounts/logout/", MyLogoutView.as_view(), name="logout"),
     path('accounts/', include('django.contrib.auth.urls')),
     path('register/', register, name='register'),
     path('member/', member, name="member"),
@@ -23,6 +23,6 @@ urlpatterns = [
 
 ]
 if settings.DEBUG:
-    print(f"Media: {settings.MEDIA_URL}:{settings.MEDIA_ROOT}")
+    (f"Media: {settings.MEDIA_URL}:{settings.MEDIA_ROOT}")
     urlpatterns += static(settings.MEDIA_URL,
                           document_root=settings.MEDIA_ROOT)
