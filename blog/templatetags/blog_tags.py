@@ -33,3 +33,8 @@ def blog_panel(post=None, series=None):
     posts are all posts in series.
     '''
     return context
+
+@register.inclusion_tag('includes/format_pub_author.html')
+def format_pub_author(published=None, author=None):
+    context = {"published": published, "author": author}
+    return context

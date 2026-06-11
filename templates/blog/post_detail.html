@@ -42,9 +42,7 @@
 
                         <!-- Meta -->
                         <div class="text-muted mb-4 small">
-                            Posted by {{ post.author }}
-                            :
-                            {{ post.published_date|date:"M d, Y" }}
+                            {% format_pub_author published=post.published_date author=post.author %}
                         </div>
 
                         <!-- Intro -->

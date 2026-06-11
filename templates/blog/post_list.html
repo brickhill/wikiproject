@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load blog_tags %}
+
 {% block title %}
 {{ title }}
 {% endblock %}
@@ -20,7 +22,7 @@
                     </div>
     
                     <div class="card-footer text-muted">
-                        {{ post.published_date|date:"M d, Y" }} : {{ post.author }}
+                        {% format_pub_author published=post.published_date author=post.author %}
                     </div>
                 </div>
             </div>

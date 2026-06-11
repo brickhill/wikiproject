@@ -85,13 +85,10 @@ def page_std_detail(request, keyword):
 
 
 def series_detail(request, slug):
-    print("SERIES DETAIL")
     series = get_object_or_404(Series, slug=slug)
     posts = SeriesPost.objects.filter(
         series=series).select_related("post").order_by("order")
-    for p in posts:
-        print(f"AUTHOR:{p.post.author}")
-        print(f"CREATED:{p.post.created}")
+
     context = {
         "series": series.slug,
         "content1": "CONTENT1",
