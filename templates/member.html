@@ -7,6 +7,9 @@ Member page
 {% block content1 %}
     <div class="container-fluid">
         {{ content1|safe }}
+        <a href="{% url 'password_change' %}">
+            Change Password
+        </a>
     </div>
 {% endblock %}
 [
