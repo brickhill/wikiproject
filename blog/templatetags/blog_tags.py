@@ -1,7 +1,7 @@
 # blog/templatetags/blog_tags.py
 from django import template
 from django.shortcuts import get_object_or_404
-from blog.models import Post, Series, SeriesPost
+from blog.models import Post, Series, SeriesPost, Category
 
 register = template.Library()
 
@@ -12,6 +12,11 @@ def recent_posts(count=5):
             order_by('-published_date')[:count]
     return {'recent_posts': posts}
 
+@register.inclusion_tag('includes/categories.html')
+def categories():
+    categories = Category.objects.all()
+    # categories = ['A', 'B', 'C', "D"]
+    return {'categories': categories }
 
 @register.inclusion_tag('includes/list_series.html')
 def list_series():

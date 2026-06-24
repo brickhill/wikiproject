@@ -72,7 +72,7 @@ class Post(models.Model):
         if not self.slug:
             self.slug = slugify(self.title)
         super().save(*args, **kwargs)
-        resize(self.image, width=600)
+        resize(self.image, width=250)
 
     def __str__(self):
         return self.title
@@ -115,8 +115,8 @@ class Page(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)
+        resize(self.image, width=250)
         super().save(*args, **kwargs)
-        resize(self.image, width=600)
 
     def __str__(self):
         return self.title

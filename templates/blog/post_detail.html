@@ -11,13 +11,13 @@
             <div class="col-lg-12">
 
                 <!-- Post Card -->
-                <article class="card border-0 shadow-sm rounded-4 overflow-hidden">
-
+                <article class="card border-0 shadow-sm overflow-hidden">
                     <!-- Hero Image -->
                     {% if post.image %}
-                    <img src="{{ post.image.url }}"
+                        <img src="{{ post.image.url }}"
                         class="img-fluid"
-                        style="max-height:450px; object-fit:cover;"
+                        width="250px"
+                        style="border-radius:15px;"
                         alt="{{ post.title }}">
                     {% endif %}
 
@@ -131,7 +131,8 @@
 </div>
 {% endblock %}
 {% block aside %}
-<h1>Aside</h1>
+<h1>CAT</h1>
+{% categories %}
 {% endblock %}
 {% block left %}
     {% blog_panel post=post series=series %}

@@ -1,4 +1,5 @@
 {% load cookie_consent_tags %}
+
 {% not_accepted_or_declined_cookie_groups request as cookie_groups %}
 {% if cookie_groups %}
     <div class="position-fixed bottom-0 start-0 end-0 bg-dark text-white p-3">

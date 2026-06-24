@@ -1,0 +1,13 @@
+<!-- templates/includes/categories.html -->
+<div class="card mb-3">
+    <div class="card-header">Categories</div>
+    <ul class="list-group-unnumbered list-group-flush">
+        {% for c in categories %}
+            <li class="list-group-item">
+                {% comment %} <a href="{% url 'post_detail2' slug=p.post.slug series=series.slug %}"> {% endcomment %}
+                    {{ c.name }}
+                {% comment %} </a> {% endcomment %}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
