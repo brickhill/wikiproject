@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Post, Page, Series, Comment, SeriesPost
+from .models import Post, Page, Series, Comment, SeriesPost, Category
 from django.db.models import Q
 from .forms import CommentForm
 from django.contrib import messages
@@ -82,6 +82,15 @@ def page_std_detail(request, keyword):
     messages.info(request, 'FYI...')
     page = get_object_or_404(Page, keyword=keyword)
     return render(request, 'blog/page.html', {'page': page})
+
+
+def category_detail(request, id):
+    category = get_object_or_404(Category, id=id)
+    context = {
+        "content1": "Cat detail",
+        "category": category
+    }
+    return render(request, 'blog/category_detail.html', context)
 
 
 def series_detail(request, slug):

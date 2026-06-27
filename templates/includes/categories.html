@@ -4,9 +4,9 @@
     <ul class="list-group-unnumbered list-group-flush">
         {% for c in categories %}
             <li class="list-group-item">
-                {% comment %} <a href="{% url 'post_detail2' slug=p.post.slug series=series.slug %}"> {% endcomment %}
+                <a href="{% url 'category_detail' id=c.id %}">
                     {{ c.name }}
-                {% comment %} </a> {% endcomment %}
+                </a>
             </li>
         {% endfor %}
     </ul>
