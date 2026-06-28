@@ -79,7 +79,7 @@ class Post(models.Model):
     content = RichTextUploadingField()
     excerpt = models.TextField(blank=True)
 
-    categories = models.ManyToManyField(Category, blank=True)
+    categories = models.ManyToManyField(Category, blank=True, related_name="posts")
     # series = models.ManyToManyField(Series, through="SeriesPost", blank=True)
 
     status = models.CharField(max_length=10,

@@ -14,8 +14,8 @@ def recent_posts(count=5):
 
 @register.inclusion_tag('includes/categories.html')
 def categories():
-    categories = Category.objects.all()
-    # categories = ['A', 'B', 'C', "D"]
+
+    categories = Category.objects.filter(parent__isnull=True)
     return {'categories': categories }
 
 @register.inclusion_tag('includes/list_series.html')

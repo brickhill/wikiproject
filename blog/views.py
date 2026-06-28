@@ -89,9 +89,11 @@ def category_detail(request, id):
         
     request.session["last_blog_page"] = request.get_full_path()
     category = get_object_or_404(Category, id=id)
+    posts = category.posts.all()     # type: ignore
     context = {
         "content1": "Cat detail",
-        "category": category
+        "category": category,
+        "posts": posts
     }
     return render(request, 'blog/category_detail.html', context)
 

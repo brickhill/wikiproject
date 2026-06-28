@@ -7,6 +7,9 @@
                 <a href="{% url 'category_detail' id=c.id %}">
                     {{ c.name }}
                 </a>
+                {% if c.children.exists %}
+                    {% include "includes/categories.html" with categories=c.children.all %}
+                {% endif %}
             </li>
         {% endfor %}
     </ul>

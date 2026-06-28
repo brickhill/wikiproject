@@ -1,0 +1,13 @@
+<ul>
+{% for category in categories %}
+    <li>
+        <a href="{% url 'category_detail' id=c.id %}">
+            {{ category.name }}:{{category.get_absolute_url}}
+        </a>
+
+        {% if category.children.exists %}
+            {% include "includes/categories2.html" with categories=category.children.all %}
+        {% endif %}
+    </li>
+{% endfor %}
+</ul>
