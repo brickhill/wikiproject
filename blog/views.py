@@ -8,13 +8,13 @@ from django.contrib import messages
 def post_list(request):
     posts = Post.objects.filter(status='published').order_by('-published_date')
     title = "Blog Posts"
+    request.session["last_blog_page"] = request.get_full_path()
     return render(request, 'blog/post_list.html', {'posts': posts,
                                                    'title': title})
 
 
 def post_detail(request, slug, series=None):
-    # if series is None:
-    #     print("NORMAL BLOG")
+    back_url = request.session.get("last_blog_page")
     post = get_object_or_404(
         Post,
         slug=slug,
@@ -52,6 +52,7 @@ def post_detail(request, slug, series=None):
     return render(request, 'blog/post_detail.html', {
         'post': post,
         'comments': comments,
+        'back_url': back_url,
         'title': post.title,
         'form': form,
         'series': series,
@@ -85,6 +86,8 @@ def page_std_detail(request, keyword):
 
 
 def category_detail(request, id):
+        
+    request.session["last_blog_page"] = request.get_full_path()
     category = get_object_or_404(Category, id=id)
     context = {
         "content1": "Cat detail",
@@ -94,6 +97,7 @@ def category_detail(request, id):
 
 
 def series_detail(request, slug):
+    request.session["last_blog_page"] = request.get_full_path()
     series = get_object_or_404(Series, slug=slug)
     posts = SeriesPost.objects.filter(
         series=series).select_related("post").order_by("order")

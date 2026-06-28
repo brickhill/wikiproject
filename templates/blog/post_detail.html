@@ -62,9 +62,9 @@
 
                 <!-- Back Link -->
                 <div class="mt-4">
-                    <a href="{% url 'post_list' %}"
+                    <a href="{{ back_url }}"
                     class="btn btn-outline-secondary rounded-pill px-4">
-                        ← Back to posts
+                        ← Back to posts {{ back_url }}
                     </a>
                 </div>
 

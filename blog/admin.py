@@ -44,7 +44,7 @@ class SeriesAdmin(admin.ModelAdmin):
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    fields = ("name", "slug")
+    fields = ("name", "slug", "parent")
     prepopulated_fields = {"slug": ("name",)}
 
 

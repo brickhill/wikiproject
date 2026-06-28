@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.utils.text import slugify
 from ckeditor_uploader.fields import RichTextUploadingField
 from blog.helpers import resize
+from django.core.exceptions import ValidationError
 
 
 class Series(models.Model):
@@ -25,6 +26,31 @@ class Series(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
+    parent = models.ForeignKey(
+        "self",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name="children"
+    )
+
+    def clean(self):
+        super().clean()
+
+        # Can't be your own parent
+        if self.parent == self:
+            raise ValidationError({
+                "parent": "A category cannot be its own parent."
+            })
+
+        # Check for circular references
+        parent = self.parent
+        while parent:
+            if parent == self:
+                raise ValidationError({
+                    "parent": "This would create a circular hierarchy."
+                })
+            parent = parent.parent
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -36,6 +62,8 @@ class Category(models.Model):
         verbose_name_plural = "Categories"
 
     def __str__(self):
+        if self.parent:
+            return f"{self.parent} > {self.name}"
         return self.name
 
 
