@@ -8,7 +8,7 @@
                     {{ c.name }}
                 </a>
                 {% if c.children.exists %}
-                    {% include "includes/categories.html" with categories=c.children.all %}
+                    {% include "includes/categories2.html" with categories=c.children.all %}
                 {% endif %}
             </li>
         {% endfor %}
