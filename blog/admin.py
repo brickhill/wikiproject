@@ -47,5 +47,8 @@ class CategoryAdmin(admin.ModelAdmin):
     fields = ("name", "slug", "parent")
     prepopulated_fields = {"slug": ("name",)}
 
-
-admin.site.register(Comment)
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ("post", "user", "parent", "created", "active")
+    list_filter = ("post", "user")
+    search_fields = ("content",)

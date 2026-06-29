@@ -6,7 +6,9 @@ from django.contrib import messages
 
 
 def post_list(request):
-    posts = Post.objects.filter(status='published').order_by('-published_date')
+    posts = Post.objects.filter(status='published',
+                                published_date__isnull=False).  \
+                                order_by('-published_date')
     title = "Blog Posts"
     request.session["last_blog_page"] = request.get_full_path()
     return render(request, 'blog/post_list.html', {'posts': posts,
@@ -46,9 +48,10 @@ def post_detail(request, slug, series=None):
                     comment.parent = Comment.objects.get(id=parent_id)
 
                 comment.save()
-
+                messages.success(request,
+                'Your comment is awaiting approval')
                 return redirect('post_detail', slug=slug)
-
+            
     return render(request, 'blog/post_detail.html', {
         'post': post,
         'comments': comments,
@@ -86,7 +89,6 @@ def page_std_detail(request, keyword):
 
 
 def category_detail(request, id):
-        
     request.session["last_blog_page"] = request.get_full_path()
     category = get_object_or_404(Category, id=id)
     posts = category.posts.all()     # type: ignore
@@ -105,7 +107,7 @@ def series_detail(request, slug):
         series=series).select_related("post").order_by("order")
 
     context = {
-        "series": series.slug,
+        "series": series,
         "content1": "CONTENT1",
         "posts": posts,
     }

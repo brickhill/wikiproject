@@ -171,10 +171,8 @@ class Comment(models.Model):
     )
 
     content = models.TextField()
-
     created = models.DateTimeField(auto_now_add=True)
-
-    active = models.BooleanField(default=True)
+    active = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['created']

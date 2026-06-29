@@ -1,6 +1,8 @@
 <!-- templates/includes/blog_panel.html -->
-<div class="card mb-3">
-    {% if series %}
+ {% load blog_tags %}
+
+ {% if series %}
+    <div class="card mb-3">
         <div class="card-header">{{ series }}</div>
         <ol class="list-group-numbered list-group-flush">
             {% for p in posts %}
@@ -17,8 +19,7 @@
                 </li>
             {% endfor %}
         </ol>
-    {% else %}
-        <div class="card-header">BLOG POST</div>
-        <p>Maybe put most recent posts?</p>
-    {% endif %}
-</div>
+    </div>
+{% else %}
+    {% recent_posts 5 %}
+{% endif %}
