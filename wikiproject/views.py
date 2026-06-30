@@ -25,9 +25,12 @@ class MyLogoutView(LogoutView):
     
 def home(request):
     page = get_object_or_404(Page, keyword='home')
+    hero = get_object_or_404(Page, keyword='hero')
     context = {
         "title": page.title,
         "content": page.content,
+        "hero_title": hero.title,
+        "hero_content": hero.content,
         "image": page.image,
         "image_title": "TBA"
     }
@@ -117,12 +120,12 @@ def register(request):
     return render(request, 'registration/register.html', {'form': form})
 
 
-def series(request):
-    title = "Series"
-    context = {
-        "content1": "<h1>Series</h1>",
-        "left": "stuff on the left",
-        "title": title
-    }
+# def series(request):
+#     title = "Series"
+#     context = {
+#         "content1": "<h1>Series</h1>",
+#         "left": "stuff on the left",
+#         "title": title
+#     }
 
-    return render(request, "series.html", context)
+#     return render(request, "series.html", context)

@@ -2,7 +2,7 @@
 from django.contrib import admin
 from adminsortable2.admin import SortableAdminMixin
 from .models import Post, Page, Series, Category, Comment, SeriesPost
-
+from django.contrib import messages
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
@@ -47,8 +47,20 @@ class CategoryAdmin(admin.ModelAdmin):
     fields = ("name", "slug", "parent")
     prepopulated_fields = {"slug": ("name",)}
 
+
+@admin.action(description="Approve selected comments")
+def approve_comments(modeladmin, request, queryset):
+    updated = queryset.update(active=True)
+
+    modeladmin.message_user(
+        request,
+        f"{updated} comments approved.",
+        messages.SUCCESS,
+    )
+
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
     list_display = ("post", "user", "parent", "created", "active")
     list_filter = ("post", "user")
     search_fields = ("content",)
+    actions = [approve_comments]

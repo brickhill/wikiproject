@@ -109,6 +109,7 @@ class Post(models.Model):
 class Page(models.Model):
     KEYWORD_CHOICES = [
         ('home', 'Home Page'),
+        ('hero', 'Hero'),
         ('terms', 'Terms & Conditions'),
         ('privacy', 'Privacy'),
         ('cookie', 'Cookie Policy')

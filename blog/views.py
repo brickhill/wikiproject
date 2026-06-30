@@ -70,20 +70,20 @@ def page_detail(request, slug):
 
 
 def page_std_detail(request, keyword):
-    messages.success(
-                request,
-                'SUCCESS'
-            )
-    messages.debug(
-        request,
-        "What is this?"
-    )
-    messages.error(
-                   request,
-                   'Something went wrong.'
-    )
-    messages.warning(request, 'Be careful.')
-    messages.info(request, 'FYI...')
+    # messages.success(
+    #             request,
+    #             'SUCCESS'
+    #         )
+    # messages.debug(
+    #     request,
+    #     "What is this?"
+    # )
+    # messages.error(
+    #                request,
+    #                'Something went wrong.'
+    # )
+    # messages.warning(request, 'Be careful.')
+    # messages.info(request, 'FYI...')
     page = get_object_or_404(Page, keyword=keyword)
     return render(request, 'blog/page.html', {'page': page})
 
