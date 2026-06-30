@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from .views import home, about, register, member, contact, experiment
+from .views import home, about, register, member, contact
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
@@ -26,9 +26,7 @@ urlpatterns = [
     path('page/', include('blog.urls')),
     path("ckeditor/", include("ckeditor_uploader.urls")),
     path('cookies/', include('cookie_consent.urls')),
-    path('contact/', contact, name='contact'),
-    path('experiment/', experiment, name='experiment')
-
+    path('contact/', contact, name='contact')
 ]
 if settings.DEBUG:
     (f"Media: {settings.MEDIA_URL}:{settings.MEDIA_ROOT}")

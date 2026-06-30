@@ -117,15 +117,6 @@ def register(request):
     return render(request, 'registration/register.html', {'form': form})
 
 
-def experiment(request):
-    title = "Experiment"
-    context =  {
-        "title": title,
-        'left': "LEFT SIDE",
-        "content1": "Content ssd sd sd sdg sg sg"
-    }
-    return render(request, "experiment.html", context)
-
 def series(request):
     title = "Series"
     context = {
