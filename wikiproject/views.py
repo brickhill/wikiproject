@@ -9,20 +9,36 @@ from django.conf import settings
 
 
 class MyLoginView(LoginView):
+    redirect_authenticated_user = True
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            messages.info(request, "You are already logged in.")
+            return redirect(self.get_success_url())
+
+        return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         messages.success(
             self.request,
-            f"Welcome back, {form.get_user().first_name or form.get_user().username}!"
+            f"Welcome back, "
+            f"{form.get_user().first_name or form.get_user().username}!"
         )
         return super().form_valid(form)
+
 
 class MyLogoutView(LogoutView):
 
     def dispatch(self, request, *args, **kwargs):
+        print('AA')
+        if not request.user.is_authenticated:
+            print('BB')
+            messages.info(request, "You are already logged out.")
+            return redirect("home ")
         messages.success(request, "You have been logged out successfully.")
         return super().dispatch(request, *args, **kwargs)
-    
+
+
 def home(request):
     page = get_object_or_404(Page, keyword='home')
     hero = get_object_or_404(Page, keyword='hero')
@@ -118,14 +134,3 @@ def register(request):
         form = RegisterForm()
 
     return render(request, 'registration/register.html', {'form': form})
-
-
-# def series(request):
-#     title = "Series"
-#     context = {
-#         "content1": "<h1>Series</h1>",
-#         "left": "stuff on the left",
-#         "title": title
-#     }
-
-#     return render(request, "series.html", context)
