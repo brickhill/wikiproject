@@ -98,7 +98,7 @@ DATABASES = {
 
 try:
     file = open("dev.txt", "r")
-    DEBUG = True
+    DEBUG = False  # Set dev debug setting.
     contents = file.read()
     print('DEV Environment')
     print(f"CONTENTS: {contents}")  # Print file content
