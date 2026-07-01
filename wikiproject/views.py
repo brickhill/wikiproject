@@ -34,7 +34,7 @@ class MyLogoutView(LogoutView):
         if not request.user.is_authenticated:
             print('BB')
             messages.info(request, "You are already logged out.")
-            return redirect("home ")
+            return redirect("home")
         messages.success(request, "You have been logged out successfully.")
         return super().dispatch(request, *args, **kwargs)
 
