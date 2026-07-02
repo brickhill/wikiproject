@@ -98,7 +98,7 @@ DATABASES = {
 
 try:
     file = open("dev.txt", "r")
-    DEBUG = False  # Set dev debug setting.
+    DEBUG = False  # Set dev debug setting. Note that setting it to False will kill ckeditor
     contents = file.read()
     print('DEV Environment')
     print(f"CONTENTS: {contents}")  # Print file content

@@ -39,6 +39,12 @@ class MyLogoutView(LogoutView):
         return super().dispatch(request, *args, **kwargs)
 
 
+from django.shortcuts import render
+
+def server_error(request):
+    return render(request, "500.html", status=500)
+
+
 def home(request):
     page = get_object_or_404(Page, keyword='home')
     hero = get_object_or_404(Page, keyword='hero')
@@ -51,17 +57,6 @@ def home(request):
         "image_title": "TBA"
     }
     return render(request, "home.html", context)
-
-
-def about(request):
-    context = {"content1": """
-    <div class="container-fluid">
-        <h1>About SBS</h1>
-        <p>A load of stuff about SBS.</p>
-    </div>
-               """
-               }
-    return render(request, "about.html", context)
 
 
 @login_required

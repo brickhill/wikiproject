@@ -1,15 +1,15 @@
 from django.contrib import admin
 from django.urls import path, include
-from .views import home, about, register, member, contact
+from .views import home, register, member, contact
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 from .views import MyLoginView, MyLogoutView
 
+handler500 = "wikiproject.views.server_error"
 urlpatterns = [
     path('', home, name="home"),
     path('admin/', admin.site.urls),
-    path('about', about, name="about"),
     path("accounts/login/", MyLoginView.as_view(), name="login"),
     path("accounts/logout/", MyLogoutView.as_view(), name="logout"),
     path('accounts/', include('django.contrib.auth.urls')),
