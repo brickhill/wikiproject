@@ -10,7 +10,8 @@
 
                 <form action="{% url 'logout' %}" method="post" style="display:inline;">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-primary btn-sm shadow" onclick="return confirm('Are you sure you want to log out?');">
+                    <button type="submit" class="btn btn-primary btn-sm shadow" 
+                    onclick="return confirm('Are you sure you want to log out?');">
                         Logout
                     </button>
                 </form>
