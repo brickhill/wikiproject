@@ -13,7 +13,7 @@ class MyLoginView(LoginView):
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            messages.info(request, "You are already logged in.")
+            messages.error(request, "You are already logged in.")
             return redirect(self.get_success_url())
 
         return super().dispatch(request, *args, **kwargs)
@@ -33,13 +33,11 @@ class MyLogoutView(LogoutView):
         print('AA')
         if not request.user.is_authenticated:
             print('BB')
-            messages.info(request, "You are already logged out.")
+            messages.error(request, "You are already logged out.")
             return redirect("home")
-        messages.success(request, "You have been logged out successfully.")
+        messages.success(request, "You have been logged out.")
         return super().dispatch(request, *args, **kwargs)
 
-
-from django.shortcuts import render
 
 def server_error(request):
     return render(request, "500.html", status=500)

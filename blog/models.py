@@ -4,6 +4,10 @@ from django.utils.text import slugify
 from ckeditor_uploader.fields import RichTextUploadingField
 from blog.helpers import resize
 from django.core.exceptions import ValidationError
+STATUS_CHOICES = [
+        ('draft', 'Draft'),
+        ('published', 'Published'),
+    ]
 
 
 class Series(models.Model):
@@ -68,10 +72,6 @@ class Category(models.Model):
 
 
 class Post(models.Model):
-    STATUS_CHOICES = [
-        ('draft', 'Draft'),
-        ('published', 'Published'),
-    ]
 
     title = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
@@ -79,7 +79,9 @@ class Post(models.Model):
     content = RichTextUploadingField()
     excerpt = models.TextField(blank=True)
 
-    categories = models.ManyToManyField(Category, blank=True, related_name="posts")
+    categories = models.ManyToManyField(Category,
+                                        blank=True,
+                                        related_name="posts")
     # series = models.ManyToManyField(Series, through="SeriesPost", blank=True)
 
     status = models.CharField(max_length=10,
@@ -91,10 +93,34 @@ class Post(models.Model):
         null=True
     )
     allow_comments = models.BooleanField(default=True)
-
+    image_title = models.CharField(
+     max_length=100,
+     null=True,
+     blank=True,
+     help_text="Image title"
+    )
+    image_alt_text = models.CharField(
+     max_length=100,
+     null=True,
+     blank=True,
+     help_text="Image alt text"
+    )
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     published_date = models.DateTimeField(null=True, blank=True)
+
+    def clean(self):
+        super().clean()
+        errors = {}
+        if self.image_title and not self.image:
+            errors["image_title"] = "Image title can only " + \
+                                    "be entered if there is an image."
+
+        if self.image_alt_text and not self.image:
+            errors["image_alt_text"] = "Image alt text can only " + \
+                                       "be entered if there is an image."
+        if errors:
+            raise ValidationError(errors)
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -117,6 +143,9 @@ class Page(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
     content = RichTextUploadingField()
+    status = models.CharField(max_length=10,
+                              choices=STATUS_CHOICES,
+                              default='draft')
     keyword = models.CharField(
         max_length=7,
         choices=KEYWORD_CHOICES,
@@ -130,6 +159,18 @@ class Page(models.Model):
         blank=True,
         null=True
     )
+    image_title = models.CharField(
+     max_length=100,
+     null=True,
+     blank=True,
+     help_text="Image title"
+    )
+    image_alt_text = models.CharField(
+     max_length=100,
+     null=True,
+     blank=True,
+     help_text="Image alt text"
+    )
     order = models.PositiveIntegerField(
         default=0,
         editable=False,
@@ -140,6 +181,19 @@ class Page(models.Model):
 
     class Meta:
         ordering = ['order']
+
+    def clean(self):
+        super().clean()
+        errors = {}
+        if self.image_title and not self.image:
+            errors['image_title'] = "Image title can only " + \
+                                    "be entered if there is an image."
+
+        if self.image_alt_text and not self.image:
+            errors["image_alt_text"] = "Image alt text can only " + \
+                                       "be entered if there is an image."
+        if errors:
+            raise ValidationError(errors)
 
     def save(self, *args, **kwargs):
         if not self.slug:

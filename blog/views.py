@@ -49,9 +49,9 @@ def post_detail(request, slug, series=None):
 
                 comment.save()
                 messages.success(request,
-                'Your comment is awaiting approval')
+                                 'Your comment is awaiting approval')
                 return redirect('post_detail', slug=slug)
-            
+
     return render(request, 'blog/post_detail.html', {
         'post': post,
         'comments': comments,
