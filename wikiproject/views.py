@@ -99,7 +99,7 @@ def contact(request):
 
             messages.success(
                 request,
-                f'Message sent successfully:{r}.'
+                f'Message sent successfully.'
             )
 
             return redirect('contact')

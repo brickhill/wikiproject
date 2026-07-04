@@ -29,9 +29,11 @@
         {% empty %}
             <p>No posts yet.</p>
         {% endfor %}
-        <form method="get" action="{% url 'search' %}">
-            <input type="text" name="q" placeholder="Search..."> 
-            <button type="submit" class="btn btn-default btn-sm shadow">Search</button>
+        <form method="get" action="{% url 'search' %}" class="d-flex align-items-center">
+            <input type="text" name="q" class="form-control w-50 me-2" placeholder="Search..."> 
+            <button class="btn btn-primary" type="submit">
+                <i class="bi bi-search"></i>
+            </button>
         </form>
     </div>
 </div>

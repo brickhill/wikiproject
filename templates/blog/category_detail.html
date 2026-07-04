@@ -38,20 +38,26 @@
                     {% endfor %}
                 </div>
                 <!-- Back Link -->
-                <div class="mt-4">
-                    <a href="{% url 'post_list' %}"
-                    class="btn btn-outline-secondary rounded-pill px-4">
-                        ← Back to posts
-                    </a>
-                </div>
+                
             </div>
         </div>
-    </div>
-    <form method="get" action="{% url 'search' %}">
-        <input type="text" name="q" placeholder="Search..."> 
-        <button type="submit" class="btn btn-primary btn-lg px-4 py-2 shadow">Search</button>
+        <br/>
+        <form method="get" action="{% url 'search' %}" class="d-flex align-items-center">
+            <input type="text" name="q" class="form-control w-50 me-2" placeholder="Search..."> 
+            <button class="btn btn-primary" type="submit">
+                <i class="bi bi-search"></i>
+            </button>
+        </form>
+            <div class="mt-4">
+                <a href="{% url 'post_list' %}"
+                class="btn btn-outline-secondary rounded-pill px-4">
+                    ← Back to posts
+                </a>
+            </div>
 
-    </form>
+
+
+    </div>
 </div>
 {% endblock %}
 {% block aside %}
