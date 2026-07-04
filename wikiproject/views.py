@@ -30,9 +30,7 @@ class MyLoginView(LoginView):
 class MyLogoutView(LogoutView):
 
     def dispatch(self, request, *args, **kwargs):
-        print('AA')
         if not request.user.is_authenticated:
-            print('BB')
             messages.error(request, "You are already logged out.")
             return redirect("home")
         messages.success(request, "You have been logged out.")
