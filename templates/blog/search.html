@@ -1,5 +1,16 @@
+{% extends "base.html" %}
+{% load blog_tags %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+
 <h1>Search results</h1>
 <h2>{{ query }}</h2>
 {% for r in results %}
     <p>{{ r }}</p>
 {% endfor %}
+</div>
+{% endblock %}
