@@ -17,7 +17,26 @@
                         <a href="{% url 'post_detail' post.slug %}">
                             <h5 class="card-title">{{ post.title }}</h5></a>
                         <p class="card-text">
-                            {{ post.content|safe }}
+                            {% if post.image %}
+                                <figure class="figure float-md-start me-md-3 mb-3" style="max-width: 300px;">
+                                    <img src="{{ post.image.url }}"
+                                    class="figure-img img-fluid rounded"
+                                    alt="{{ post.image_alt_text }}">
+
+                                    <figcaption class="figure-caption">
+                                        {{ post.image_title }}
+                                    </figcaption>
+                                </figure>
+
+                                <p>
+                                    {{ post.excerpt|safe}}
+                                </p>
+                            {% endif %}
+                            {% if post.excerpt %}
+                                {{ post.excerpt|safe }}
+                            {% else %}
+                                {{ post.content|safe }}
+                            {% endif %}
                         </p>
                     </div>
     
