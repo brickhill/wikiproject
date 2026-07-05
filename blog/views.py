@@ -11,12 +11,14 @@ def post_list(request):
                                 order_by('-published_date')
     title = "Blog Posts"
     request.session["last_blog_page"] = request.get_full_path()
+    request.session["last_label"] = "Back to BlogX"
     return render(request, 'blog/post_list.html', {'posts': posts,
                                                    'title': title})
 
 
 def post_detail(request, slug, series=None):
     back_url = request.session.get("last_blog_page")
+    back_label = request.session.get("last_label")
     post = get_object_or_404(
         Post,
         slug=slug,
@@ -91,6 +93,7 @@ def page_std_detail(request, keyword):
 def category_detail(request, id):
     request.session["last_blog_page"] = request.get_full_path()
     category = get_object_or_404(Category, id=id)
+    request.session["last_label"] = f"Back to Cat:{{category}}"
     posts = category.posts.all()     # type: ignore
     context = {
         "content1": "Cat detail",
@@ -103,6 +106,7 @@ def category_detail(request, id):
 def series_detail(request, slug):
     request.session["last_blog_page"] = request.get_full_path()
     series = get_object_or_404(Series, slug=slug)
+    request.session["last_label"] = f"Back to Series: {{series}}"
     posts = SeriesPost.objects.filter(
         series=series).select_related("post").order_by("order")
 
