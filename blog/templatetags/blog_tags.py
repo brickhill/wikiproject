@@ -20,18 +20,20 @@ def categories():
 
 @register.inclusion_tag('includes/list_series.html')
 def list_series():
-    # TODO Series should have 'draft/published' flag and a priority.
     series = Series.objects.all().order_by('slug')
     return {'list_series': series}
 
 
 @register.inclusion_tag('includes/blog_panel.html')
 def blog_panel(post=None, series=None):
+    print('s1')
     if series is not None:
+        print(f's2[{series}]')
         series = get_object_or_404(Series, slug=series)
+    print('s3')
     posts = SeriesPost.objects.filter(
         series=series).select_related("post").order_by("order")
-
+    print('s4')
     context = {"posts": posts, "series": series, "post": post}
     '''
     post is current post.
