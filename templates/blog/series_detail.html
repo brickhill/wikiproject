@@ -7,28 +7,7 @@
 <div class="container-fluid">
     <h1 class="mb-4">{{ series.name }}</h1>
     
-    <div class="row">
-        {% for post in posts %}
-            <div>
-                <div class="card shadow-sm h-100">
-                    <div class="card-body">
-                        <a href="{% url 'post_detail2' slug=post.post.slug series=series %}">
-                            <p>Order:{{ post.order }}</p>
-                            <h5 class="card-title">{{ post.post.title }}</h5></a>
-                        <p class="card-text">
-                            {{ post.post.content|safe }}
-                        </p>
-                    </div>
-    
-                    <div class="card-footer text-muted">
-                        {% format_pub_author published=post.post.published_date author=post.post.author %}
-                    </div>
-                </div>
-            </div>
-        {% empty %}
-            <p>No posts yet.</p>
-        {% endfor %}
-    </div>
+  
 </div>
 {% endblock %}
 {% block aside %}
