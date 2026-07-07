@@ -5,9 +5,56 @@
 {% endblock %}
 {% block content1 %}
 <div class="container-fluid">
-    <h1 class="mb-4">{{ series.name }}</h1>
+
+    <h1 class="mb-4">{{ series }}</h1>
     
-  
+    <div class="row">
+        {% for seriespost in seriesposts %}
+            <div class="col-md-6 mb-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <a href="{% url 'post_detail' seriespost.post.slug %}">
+                            <h5 class="card-title">{{ seriespost.post.title }}</h5></a>
+                        <p class="card-text">
+                            {% if post.image %}
+                                <figure class="figure float-md-start me-md-3 mb-3" 
+                                style="max-width: 300px;">
+                                    <img src="{{ seriespost.image.url }}"
+                                    class="figure-img img-fluid rounded"
+                                    alt="{{ seriespost.post.image_alt_text }}">
+
+                                    <figcaption class="figure-caption">
+                                        {{ seriespost.post.image_title }}
+                                    </figcaption>
+                                </figure>
+
+                                <p>
+                                    {{ seriespost.post.excerpt|safe}}
+                                </p>
+                            {% endif %}
+                            {% if seriespost.post.excerpt %}
+                                {{ seriespost.post.excerpt|safe }}
+                            {% else %}
+                                {{ seriespost.post.content|safe }}
+                            {% endif %}
+                        </p>
+                    </div>
+    
+                    <div class="card-footer text-muted">
+                        {% format_pub_author published=seriespost.post.published_date author=seriespost.post.author %}
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p>No posts yet.</p>
+        {% endfor %}
+        <form method="get" action="{% url 'search' %}" class="d-flex align-items-center">
+            <input type="text" name="q" class="form-control w-50 me-2" placeholder="Search..."> 
+            <button class="btn btn-primary" type="submit">
+                <i class="bi bi-search"></i>
+            </button>
+        </form>
+    </div>
 </div>
 {% endblock %}
 {% block aside %}
