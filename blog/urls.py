@@ -10,6 +10,6 @@ urlpatterns = [
     path('category_detail/<slug:id>/', views.category_detail,
          name='category_detail'),
     path('std/<slug:keyword>/', views.page_std_detail, name='page_std'),
-    path('series/<slug:slug>/', views.series_detail, name='series_detail'),
+    path('series/<slug:id>/', views.series_detail, name='series_detail'),
     path('search/', views.search, name='search'),
 ]

@@ -104,9 +104,9 @@ def category_detail(request, id):
     return render(request, 'blog/category_detail.html', context)
 
 
-def series_detail(request, slug):
+def series_detail(request, id):
     request.session["last_blog_page"] = request.get_full_path()
-    series = get_object_or_404(Series, slug=slug)
+    series = get_object_or_404(Series, id=id)
     request.session["last_label"] = f"Back to Series: {{series}}"
     posts = SeriesPost.objects.filter(
         series=series).select_related("post").order_by("order")
