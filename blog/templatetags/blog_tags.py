@@ -20,7 +20,7 @@ def categories():
 
 @register.inclusion_tag('includes/list_series.html')
 def list_series():
-    series = Series.objects.all().order_by('slug')
+    series = Series.objects.filter(status='published').order_by('priority')
     return {'list_series': series}
 
 

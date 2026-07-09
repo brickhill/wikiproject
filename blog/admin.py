@@ -37,7 +37,7 @@ class SeriesPostAdmin(SortableAdminMixin, admin.ModelAdmin):  # type: ignore[mis
 
 @admin.register(Series)
 class SeriesAdmin(admin.ModelAdmin):
-    list_display = ['name', 'slug']
+    list_display = ['name', 'priority', 'status', 'slug']
     prepopulated_fields = {"slug": ("name",)}
     search_fields = ('name',)
 

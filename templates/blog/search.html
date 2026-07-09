@@ -7,10 +7,15 @@
 {% block content %}
 <div class="container-fluid">
 
-<h1>Search results</h1>
-<h2>{{ query }}</h2>
-{% for r in results %}
-    <p>{{ r }}</p>
-{% endfor %}
+    <h1>Search results</h1>
+    <h2>Results for:{{ query }}</h2>
+    {% if results %}
+        {% for r in results %}
+            <a href="{% url 'post_detail' r.slug %}">
+            <h5 class="card-title">{{ r.title }}</h5></a>
+        {% endfor %}
+    {% else %}
+        <h3>Nothing found</h3>
+    {% endif %}
 </div>
 {% endblock %}

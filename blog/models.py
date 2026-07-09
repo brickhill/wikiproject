@@ -13,7 +13,10 @@ STATUS_CHOICES = [
 class Series(models.Model):
     name = models.CharField(max_length=200)
     slug = models.SlugField(unique=True)
-
+    priority = models.IntegerField(blank=True, null=True, db_index=True)
+    status = models.CharField(max_length=10,
+                              choices=STATUS_CHOICES,
+                              default='draft')
     class Meta:
         ordering = ['name']
         verbose_name_plural = "Series"

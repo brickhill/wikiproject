@@ -105,17 +105,11 @@ def category_detail(request, id):
 
 
 def series_detail(request, id):
-    print("NOB")
     request.session["last_blog_page"] = request.get_full_path()
     series = get_object_or_404(Series, id=id)
     request.session["last_label"] = f"Back to Series: {series}"
     seriesposts = SeriesPost.objects.filter(
         series=series).select_related("post").order_by("order")
-    print("POSTS START")
-    for p in seriesposts:
-        print(f"SERIESPOST:{p.post.title}")
-
-    print("POST END")
     context = {
         "series": series,
         "content1": "CONTENT1",
@@ -125,11 +119,14 @@ def series_detail(request, id):
 
 
 def search(request):
-    query = request.GET.get('q')
+    query = request.GET.get('q').strip()
     results = Post.objects.filter(
         Q(title__icontains=query) |
         Q(content__icontains=query)
     )
+
+    request.session["last_blog_page"] = request.get_full_path()
+    request.session["last_label"] = f"Back to Search: {query}"
     return render(request, 'blog/search.html', {
         'query': query,
         'results': results
