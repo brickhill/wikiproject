@@ -18,15 +18,20 @@ def post_list(request):
 
 def post_detail(request, slug, series=None):
     back_url = request.session.get("last_blog_page")
-    parts = back_url.strip("/").split("/")
     series_slug = None
+    category = None
+    parts = back_url.strip("/").split("/")
     if len(parts) > 1 and parts[1] == "series":
-        print(f"This is a series:{parts[2]}")
         series = get_object_or_404(
             Series,
             id=parts[2]
         )
         series_slug = series.slug
+    elif len(parts) > 1 and parts[1] == "category_detail":
+        category = get_object_or_404(
+            Category,
+            id=parts[2]
+        )
     back_label = request.session.get("last_label")
     post = get_object_or_404(
         Post,
@@ -47,9 +52,7 @@ def post_detail(request, slug, series=None):
             form = CommentForm(request.POST)
 
             if form.is_valid():
-
                 comment = form.save(commit=False)
-
                 comment.post = post
                 comment.user = request.user
 
@@ -71,6 +74,7 @@ def post_detail(request, slug, series=None):
         'title': post.title,
         'form': form,
         'series': series_slug,
+        'category': category,
         'content1': True
     })
 

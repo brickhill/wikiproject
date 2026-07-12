@@ -1,6 +1,5 @@
 <!-- templates/includes/blog_panel.html -->
  {% load blog_tags %}
-<h1>BLOG PANEL</h1>
  {% if series %}
     <h2>SERIES DETECTED</h2>
     <div class="card mb-3">
@@ -21,7 +20,8 @@
             {% endfor %}
         </ol>
     </div>
-{% else %}
-    <h2>No series </h2>
-    {% recent_posts 5 %}
 {% endif %}
+{% if category %}
+    <h2> CAT:{{category}}</h2>
+{% endif %}
+{% recent_posts 5 %}

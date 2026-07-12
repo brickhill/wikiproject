@@ -6,7 +6,6 @@ def resize(image, width=250):
         img = Image.open(image.path)
         if img.width > width:
             ratio = width / img.width
-            print(f"RATIO:{ratio}")
             new_height = int(img.height * ratio)
             img.thumbnail((width, new_height))
             img.save(image.path)
