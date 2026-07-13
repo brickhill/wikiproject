@@ -10,7 +10,7 @@ STATUS_CHOICES = [
     ]
 
 
-class Series(models.Model):
+class Series(models.Model): 
     name = models.CharField(max_length=200)
     slug = models.SlugField(unique=True)
     priority = models.IntegerField(blank=True, null=True, db_index=True)

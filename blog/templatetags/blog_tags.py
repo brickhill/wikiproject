@@ -26,10 +26,15 @@ def list_series():
 
 @register.inclusion_tag('includes/blog_panel.html')
 def blog_panel(post=None, series=None, category=None):
+    posts = None
     if series is not None:
         series = get_object_or_404(Series, slug=series)
-    posts = SeriesPost.objects.filter(
-        series=series).select_related("post").order_by("order")
+        posts = SeriesPost.objects.filter(
+            series=series).select_related("post").order_by("order")
+    elif category is not None:
+        posts = Post.objects.filter(
+            categories=category, status="published").order_by('-published_date'
+        )
     context = {"posts": posts, "series": series, "post": post, "category": category}
     '''
     post is current post.

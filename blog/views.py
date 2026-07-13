@@ -66,6 +66,7 @@ def post_detail(request, slug, series=None):
                                  'Your comment is awaiting approval')
                 return redirect('post_detail', slug=slug)
 
+    print(f"CATEGORY:{category}")
     return render(request, 'blog/post_detail.html', {
         'post': post,
         'comments': comments,
@@ -119,7 +120,7 @@ def category_detail(request, id):
 
 def series_detail(request, id):
     request.session["last_blog_page"] = request.get_full_path()
-    series = get_object_or_404(Series, id=id)
+    series = get_object_or_404(Series, id=id, status="published")
     request.session["last_label"] = f"Back to Series: {series}"
     seriesposts = SeriesPost.objects.filter(
         series=series).select_related("post").order_by("order")

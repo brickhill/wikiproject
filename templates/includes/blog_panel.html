@@ -1,7 +1,6 @@
 <!-- templates/includes/blog_panel.html -->
  {% load blog_tags %}
  {% if series %}
-    <h2>SERIES DETECTED</h2>
     <div class="card mb-3">
         <div class="card-header">{{ series }}</div>
         <ol class="list-group-numbered list-group-flush">
@@ -22,6 +21,17 @@
     </div>
 {% endif %}
 {% if category %}
-    <h2> CAT:{{category}}</h2>
+    <div class="card mb-3">
+        <div class="card-header">Category:{{ category }}</div>
+        <ol class="list-group-numbered list-group-flush">
+            {% for p in posts %}
+                <li class="list-group-item">
+                    <a href="{% url 'post_detail' slug=p.slug %}">
+                        {{ p.title }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ol>
+    </div>
 {% endif %}
 {% recent_posts 5 %}
