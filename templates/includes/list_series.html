@@ -3,9 +3,9 @@
     <div class="card-header">Blog Series</div>
     <ul class="list-group list-group-flush">
         {% for series in list_series %}
-            <li class="list-group-item">
+            <li class="list-group-item border-0">
                 <a href="{% url 'series_detail' id=series.id %}">
-                    {{ series.name }}
+                    {{ forloop.counter }}. {{ series.name }}
                 </a>
             </li>
         {% endfor %}

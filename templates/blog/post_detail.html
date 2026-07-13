@@ -25,14 +25,14 @@
 
                         <!-- Category -->
                         {% if post.categories.count > 0 %}
-                            <span class="badge bg-primary mb-3 px-3 py-2">
-                                {% for p in post.categories.all %}
-                                    {% if forloop.counter > 1 %}
-                                        ,
-                                    {% endif %}
-                                    {{ p }}
-                                {% endfor %}
-                            </span>
+                            {% for p in post.categories.all %}
+                                <span class="badge bg-primary mb-3 px-3 py-2">
+                                    <a href="{% url 'category_detail' id=p.id %}"
+                                    class="text-white text-decoration-none">
+                                        {{ p }}
+                                    </a>
+                                </span>
+                            {% endfor %}
                         {% endif %}
 
                         <!-- Title -->
