@@ -23,7 +23,7 @@
 {% if category %}
     <div class="card mb-3">
         <div class="card-header">Category:{{ category }}</div>
-        <ol class="list-group-numbered list-group-flush">
+        <ol class="list-group-unnumbered list-group-flush">
             {% for p in posts %}
                 <li class="list-group-item">
                     <a href="{% url 'post_detail' slug=p.slug %}">

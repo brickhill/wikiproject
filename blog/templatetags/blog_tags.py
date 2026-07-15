@@ -30,7 +30,7 @@ def blog_panel(post=None, series=None, category=None):
     if series is not None:
         series = get_object_or_404(Series, slug=series)
         posts = SeriesPost.objects.filter(
-            series=series).select_related("post").order_by("order")
+            series=series, post__status="published").select_related("post").order_by("order")
     elif category is not None:
         posts = Post.objects.filter(
             categories=category, status="published").order_by('-published_date'
