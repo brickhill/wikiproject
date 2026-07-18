@@ -14,7 +14,7 @@ class PostAdmin(admin.ModelAdmin):
 
 @admin.register(Page)
 class PageAdmin(SortableAdminMixin, admin.ModelAdmin):  # type: ignore[misc]
-    list_display = ['title', 'display_order', 'keyword', 'order']
+    list_display = ['title', 'display_order', 'keyword', 'order', 'main_menu']
     prepopulated_fields = {"slug": ("title",)}
     list_filter = ('created',)
     search_fields = ('title', 'content')

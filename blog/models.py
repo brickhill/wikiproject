@@ -179,6 +179,12 @@ class Page(models.Model):
         editable=False,
         db_index=True
     )
+    main_menu = models.PositiveBigIntegerField(
+        default=0,
+        null=True,
+        blank=True,
+        help_text="Non-zero to show on main menu"
+    )
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
