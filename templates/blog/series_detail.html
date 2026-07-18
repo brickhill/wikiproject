@@ -10,39 +10,37 @@
     
     <div class="row">
         {% for seriespost in seriesposts %}
-            <div class="col-md-6 mb-4">
-                <div class="card shadow-sm h-100">
-                    <div class="card-body">
-                        <a href="{% url 'post_detail' seriespost.post.slug %}">
-                            <h5 class="card-title">{{ seriespost.post.title }}</h5></a>
-                        <p class="card-text">
-                            {% if post.image %}
-                                <figure class="figure float-md-start me-md-3 mb-3" 
-                                style="max-width: 300px;">
-                                    <img src="{{ seriespost.image.url }}"
-                                    class="figure-img img-fluid rounded"
-                                    alt="{{ seriespost.post.image_alt_text }}">
+            <div class="card shadow-sm h-100 mb-4">
+                <div class="card-body">
+                    <a href="{% url 'post_detail' seriespost.post.slug %}">
+                        <h5 class="card-title">{{ seriespost.post.title }}</h5></a>
+                    <p class="card-text">
+                        {% if post.image %}
+                            <figure class="figure float-md-start me-md-3 mb-3" 
+                            style="max-width: 300px;">
+                                <img src="{{ seriespost.image.url }}"
+                                class="figure-img img-fluid rounded"
+                                alt="{{ seriespost.post.image_alt_text }}">
 
-                                    <figcaption class="figure-caption">
-                                        {{ seriespost.post.image_title }}
-                                    </figcaption>
-                                </figure>
+                                <figcaption class="figure-caption">
+                                    {{ seriespost.post.image_title }}
+                                </figcaption>
+                            </figure>
 
-                                <p>
-                                    {{ seriespost.post.excerpt|safe}}
-                                </p>
-                            {% endif %}
-                            {% if seriespost.post.excerpt %}
-                                {{ seriespost.post.excerpt|safe }}
-                            {% else %}
-                                {{ seriespost.post.content|safe }}
-                            {% endif %}
-                        </p>
-                    </div>
-    
-                    <div class="card-footer text-muted">
-                        {% format_pub_author published=seriespost.post.published_date author=seriespost.post.author %}
-                    </div>
+                            <p>
+                                {{ seriespost.post.excerpt|safe}}
+                            </p>
+                        {% endif %}
+                        {% if seriespost.post.excerpt %}
+                            {{ seriespost.post.excerpt|safe }}
+                        {% else %}
+                            {{ seriespost.post.content|safe }}
+                        {% endif %}
+                    </p>
+                </div>
+
+                <div class="card-footer text-muted">
+                    {% format_pub_author published=seriespost.post.published_date author=seriespost.post.author %}
                 </div>
             </div>
         {% empty %}
