@@ -7,7 +7,7 @@
                 <a href="{% url 'series_detail' id=series.id %}">
                     {{ forloop.counter }}. {{ series.name }} 
                     {% if series.post_count == 1 %}
-                        {{ series.post_count }} posts
+                        {{ series.post_count }} post
                     {% else %}
                         {{ series.post_count }} posts
                     {% endif %}
