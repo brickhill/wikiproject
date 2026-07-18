@@ -5,7 +5,12 @@
         {% for series in list_series %}
             <li class="list-group-item border-0">
                 <a href="{% url 'series_detail' id=series.id %}">
-                    {{ forloop.counter }}. {{ series.name }}
+                    {{ forloop.counter }}. {{ series.name }} 
+                    {% if series.post_count == 1 %}
+                        {{ series.post_count }} posts
+                    {% else %}
+                        {{ series.post_count }} posts
+                    {% endif %}
                 </a>
             </li>
         {% endfor %}

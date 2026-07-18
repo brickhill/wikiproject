@@ -1,5 +1,6 @@
 # blog/templatetags/blog_tags.py
 from django import template
+from django.db.models import Count
 from django.shortcuts import get_object_or_404
 from blog.models import Post, Series, SeriesPost, Category
 
@@ -20,7 +21,9 @@ def categories():
 
 @register.inclusion_tag('includes/list_series.html')
 def list_series():
+
     series = Series.objects.filter(status='published').order_by('priority')
+    series = Series.objects.annotate(post_count=Count("seriespost"))
     return {'list_series': series}
 
 
