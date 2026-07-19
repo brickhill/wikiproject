@@ -6,6 +6,9 @@ from blog.models import Post, Series, SeriesPost, Category
 
 register = template.Library()
 
+@register.inclusion_tag('includes/search.html')
+def searchbox():
+    return {'search_form': "SEARCH FORM"}
 
 @register.inclusion_tag('includes/recent_posts.html')
 def recent_posts(count=5):
@@ -22,8 +25,8 @@ def categories():
 @register.inclusion_tag('includes/list_series.html')
 def list_series():
 
-    series = Series.objects.filter(status='published').order_by('priority')
-    series = Series.objects.annotate(post_count=Count("seriespost"))
+    series = Series.objects.filter(status="published").  \
+        order_by('priority').annotate(post_count=Count("seriespost"))
     return {'list_series': series}
 
 

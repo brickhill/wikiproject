@@ -59,7 +59,7 @@ def home(request):
 def member(request):
     title = "Member"
     context = {
-        "content1": "<h1>Content11</h1>",
+        "content1": "<h1>Account Details</h1>",
         "left": "stuff on the left",
         "title": title
     }
