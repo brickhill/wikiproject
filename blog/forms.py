@@ -15,3 +15,15 @@ class CommentForm(forms.ModelForm):
                 'placeholder': 'Write a comment...'
             })
         }
+
+
+class SearchForm(forms.Form):
+    q = forms.CharField(
+        required=True,
+        strip=True,
+        min_length=2,
+        label="",
+        widget=forms.TextInput(attrs={
+            "placeholder": "Search..."
+        })
+    )

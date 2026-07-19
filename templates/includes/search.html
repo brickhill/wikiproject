@@ -1,14 +1,15 @@
-<!-- templates/includes/categories.html -->
-<div class="card mb-3">
-    <div class="card-header">Search</div>
-    <ul class="list-group-unnumbered list-group-flush">
-        {% for c in categories %}
-            <li class="list-group-item">
-                <a href="#">
-                    xxxx
-                </a>
+<div class="card mb-3 p-2">
+    {% load crispy_forms_tags %}
+    <form method="get" action="{% url 'search' %}">
+        {% csrf_token %}
+        <div class="d-flex align-items-center gap-2">
+            <div class="flex-grow-1">
+                {{ form.q|as_crispy_field }}
+            </div>
 
-            </li>
-        {% endfor %}
-    </ul>
+            <button type="submit" class="mb-3 btn btn-primary shadow">
+                <i class="bi bi-search"></i>
+            </button>
+        </div>
+    </form>
 </div>

@@ -3,12 +3,14 @@ from django import template
 from django.db.models import Count
 from django.shortcuts import get_object_or_404
 from blog.models import Post, Series, SeriesPost, Category
+from blog.forms import SearchForm
 
 register = template.Library()
 
 @register.inclusion_tag('includes/search.html')
 def searchbox():
-    return {'search_form': "SEARCH FORM"}
+    form = SearchForm()
+    return {'search_form': "SEARCH FORM", 'form': form }
 
 @register.inclusion_tag('includes/recent_posts.html')
 def recent_posts(count=5):
