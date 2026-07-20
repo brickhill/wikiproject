@@ -13,7 +13,8 @@ def post_list(request):
     request.session["last_blog_page"] = request.get_full_path()
     request.session["last_label"] = "Back to Blog"
     return render(request, 'blog/post_list.html', {'posts': posts,
-                                                   'title': title})
+                                                   'title': title,
+                                                   'content1': True})
 
 
 def post_detail(request, slug, series=None):
@@ -66,7 +67,6 @@ def post_detail(request, slug, series=None):
                                  'Your comment is awaiting approval')
                 return redirect('post_detail', slug=slug)
 
-    print(f"CATEGORY:{category}")
     return render(request, 'blog/post_detail.html', {
         'post': post,
         'comments': comments,

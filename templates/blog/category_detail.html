@@ -3,7 +3,7 @@
 {{ title }}
 {% endblock %}
 {% load blog_tags %}
-{% block content %}
+{% block content1 %}
 <div class="container-fluid">
     <div class="container py-2">
         <div class="row justify-content-center">
@@ -48,15 +48,12 @@
                 <i class="bi bi-search"></i>
             </button>
         </form>
-            <div class="mt-4">
-                <a href="{% url 'post_list' %}"
-                class="btn btn-outline-secondary rounded-pill px-4">
-                    ← Blog
-                </a>
-            </div>
-
-
-
+        <div class="mt-4">
+            <a href="{% url 'post_list' %}"
+            class="btn btn-outline-secondary rounded-pill px-4">
+                ← Blog
+            </a>
+        </div>
     </div>
 </div>
 {% endblock %}
@@ -64,7 +61,6 @@
 {% categories %}
 {% endblock %}
 {% block left %}
-{{ category }}
-    {% blog_panel post=post series=series category=category %}
+{% searchbox %}
 {% endblock %}
 

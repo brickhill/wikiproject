@@ -4,7 +4,7 @@
 {% block title %}
 {{ title }}
 {% endblock %}
-{% block content %}
+{% block content1 %}
 <div class="container-fluid">
 
     <h1 class="mb-4">Blog Posts</h1>
@@ -56,4 +56,11 @@
         </form>
     </div>
 </div>
+{% endblock %}
+{% block aside %}
+    {% list_series %}
+{% endblock %}
+{% block left %}
+    {% searchbox %}
+    {% categories %}
 {% endblock %}
