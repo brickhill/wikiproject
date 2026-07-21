@@ -20,17 +20,18 @@
                             {% if post.image %}
                                 <figure class="figure float-md-start me-md-3 mb-3" style="max-width: 300px;">
                                     <img src="{{ post.image.url }}"
-                                    class="figure-img img-fluid rounded"
+                                    class="figure-img img-fluid rounded" 
                                     alt="{{ post.image_alt_text }}">
-
-                                    <figcaption class="figure-caption">
-                                        {{ post.image_title }}
-                                    </figcaption>
+                                    {% if post.image_title %}
+                                        <figcaption class="figure-caption">
+                                            {{ post.image_title }}
+                                        </figcaption>
+                                    {% endif %}
                                 </figure>
 
-                                <p>
+                                {% comment %} <p>
                                     {{ post.excerpt|safe}}
-                                </p>
+                                </p> {% endcomment %}
                             {% endif %}
                             {% if post.excerpt %}
                                 {{ post.excerpt|safe }}

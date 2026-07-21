@@ -29,8 +29,7 @@ def list_series():
 
     series = Series.objects.filter(status="published").  \
         order_by('priority').annotate(post_count=Count("seriespost"))
-    return {'list_series': series}
-
+    return {'list_series': series, 'count': series.count()}
 
 @register.inclusion_tag('includes/blog_panel.html')
 def blog_panel(post=None, series=None, category=None):

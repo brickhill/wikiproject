@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
 from ckeditor_uploader.fields import RichTextUploadingField
+from ckeditor.fields import RichTextField
 from blog.helpers import resize
 from django.core.exceptions import ValidationError
 STATUS_CHOICES = [
@@ -10,13 +11,16 @@ STATUS_CHOICES = [
     ]
 
 
-class Series(models.Model): 
+class Series(models.Model):
     name = models.CharField(max_length=200)
     slug = models.SlugField(unique=True)
+    title = RichTextField(blank=True, null=True,
+                          help_text="Series description")
     priority = models.IntegerField(blank=True, null=True, db_index=True)
     status = models.CharField(max_length=10,
                               choices=STATUS_CHOICES,
                               default='draft')
+
     class Meta:
         ordering = ['name']
         verbose_name_plural = "Series"

@@ -1,18 +1,20 @@
 <!-- lists all the series in a sidebox -->
-<div class="card mb-3">
-    <div class="card-header">Blog Series</div>
-    <ul class="list-group list-group-flush">
-        {% for series in list_series %}
-            <li class="list-group-item border-0">
-                <a href="{% url 'series_detail' id=series.id %}">
-                    {{ forloop.counter }}. {{ series.name }} 
-                    {% if series.post_count == 1 %}
-                        {{ series.post_count }} post
-                    {% else %}
-                        {{ series.post_count }} posts
-                    {% endif %}
-                </a>
-            </li>
-        {% endfor %}
-    </ul>
-</div>
+{% if count > 0 %}
+    <div class="card mb-3">
+        <div class="card-header">Blog Series</div>
+        <ul class="list-group list-group-flush">
+            {% for series in list_series %}
+                <li class="list-group-item border-0">
+                    <a href="{% url 'series_detail' id=series.id %}">
+                        {{ forloop.counter }}. {{ series.name }} 
+                        {% if series.post_count == 1 %}
+                            {{ series.post_count }} post
+                        {% else %}
+                            {{ series.post_count }} posts
+                        {% endif %}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}

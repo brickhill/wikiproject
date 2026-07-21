@@ -7,7 +7,9 @@
 <div class="container-fluid">
 
     <h1 class="mb-4">Series: {{ series }}</h1>
-    
+    {% if series.title %}
+        {{ series.title|safe }}
+    {% endif %}
     <div class="row">
         {% for seriespost in seriesposts %}
             <div class="card shadow-sm h-100 mb-4">
