@@ -8,9 +8,17 @@ from blog.forms import SearchForm
 register = template.Library()
 
 @register.inclusion_tag('includes/search.html')
-def searchbox():
-    form = SearchForm()
-    return {'search_form': "SEARCH FORM", 'form': form }
+def searchbox(q=None):
+    print(f"Q={q}")
+    context = {}
+    form = None
+    if q is not None:
+        context = {"q": q}
+        form = SearchForm(context)
+    else:
+        form = SearchForm()
+
+    return {'search_form': "SEARCH FORM", 'form': form, 'q': q }
 
 @register.inclusion_tag('includes/recent_posts.html')
 def recent_posts(count=5):
