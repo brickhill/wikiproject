@@ -4,7 +4,7 @@
 {% block title %}
 {{ title }}
 {% endblock %}
-{% block content %}
+{% block content1 %}
 <div class="container-fluid">
 
     <h1>Search results</h1>
@@ -18,4 +18,11 @@
         <h3>Nothing found</h3>
     {% endif %}
 </div>
+{% endblock %}
+{% block aside %}
+    {% recent_posts 5 %}
+{% endblock %}
+{% block left %}
+    {% searchbox %}
+    {% list_series %}
 {% endblock %}

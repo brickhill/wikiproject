@@ -143,5 +143,6 @@ def search(request):
     request.session["last_label"] = f"Back to Search: {query}"
     return render(request, 'blog/search.html', {
         'query': query,
+        'content1': True,
         'results': results
     })
