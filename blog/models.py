@@ -257,6 +257,12 @@ class SeriesPost(models.Model):
     class Meta:
         verbose_name = 'Series/Post'
         ordering = ['order']
+        constraints = [
+            models.UniqueConstraint(
+                fields=["series", "post"],
+                name="series_post",
+            ),
+        ]
 
     def __str__(self):
         return f"{self.series}/{self.post}"
