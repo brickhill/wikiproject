@@ -22,19 +22,8 @@
                     {% endif %}
 
                     <div class="card-body p-4 p-md-5">
-
-                        <!-- Category -->
-                        {% if post.categories.count > 0 %}
-                            {% for p in post.categories.all %}
-                                <span class="badge bg-primary mb-3 px-3 py-2">
-                                    <a href="{% url 'category_detail' id=p.id %}"
-                                    class="text-white text-decoration-none">
-                                        {{ p }}
-                                    </a>
-                                </span>
-                            {% endfor %}
-                        {% endif %}
-
+                        <!-- Categories -->
+                         {% list_categories_for_post post_id=post.id %}
                         <!-- Title -->
                         <h1 class="display-5 fw-bold mb-3">
                             {{ post.title }}

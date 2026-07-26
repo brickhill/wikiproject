@@ -7,9 +7,9 @@ from blog.forms import SearchForm
 
 register = template.Library()
 
+
 @register.inclusion_tag('includes/search.html')
 def searchbox(q=None):
-    print(f"Q={q}")
     context = {}
     form = None
     if q is not None:
@@ -18,7 +18,8 @@ def searchbox(q=None):
     else:
         form = SearchForm()
 
-    return {'search_form': "SEARCH FORM", 'form': form, 'q': q }
+    return {'search_form': "SEARCH FORM", 'form': form, 'q': q}
+
 
 @register.inclusion_tag('includes/recent_posts.html')
 def recent_posts(count=5):
@@ -26,11 +27,13 @@ def recent_posts(count=5):
             order_by('-published_date')[:count]
     return {'recent_posts': posts}
 
+
 @register.inclusion_tag('includes/categories.html')
 def categories():
 
     categories = Category.objects.filter(parent__isnull=True)
-    return {'categories': categories }
+    return {'categories': categories}
+
 
 @register.inclusion_tag('includes/list_series.html')
 def list_series():
@@ -39,25 +42,45 @@ def list_series():
         order_by('priority').annotate(post_count=Count("seriespost"))
     return {'list_series': series, 'count': series.count()}
 
+
 @register.inclusion_tag('includes/blog_panel.html')
 def blog_panel(post=None, series=None, category=None):
     posts = None
     if series is not None:
         series = get_object_or_404(Series, slug=series)
         posts = SeriesPost.objects.filter(
-            series=series, post__status="published").select_related("post").order_by("order")
+            series=series, post__status="published").  \
+            select_related("post").order_by("order")
     elif category is not None:
         posts = Post.objects.filter(
-            categories=category, status="published").order_by('-published_date'
-        )
-    context = {"posts": posts, "series": series, "post": post, "category": category}
+            categories=category, status="published").order_by(
+                '-published_date'
+                )
+    context = {
+        "posts": posts,
+        "series": series,
+        "post": post,
+        "category": category
+               }
     '''
     post is current post.
     posts are all posts in series.
     '''
     return context
 
+
 @register.inclusion_tag('includes/format_pub_author.html')
 def format_pub_author(published=None, author=None):
     context = {"published": published, "author": author}
+    return context
+
+
+@register.inclusion_tag('includes/list_categories_for_post.html')
+def list_categories_for_post(post_id=None):
+    post = get_object_or_404(Post, id=post_id)
+    print(f"POSTID:{post_id}")
+    print(f"POST:{post}")
+    for c in post.categories.all():
+        print(f"C:{c}")
+    context = {"categories": post.categories.all()}
     return context

@@ -1,0 +1,7 @@
+{% for category in categories %} 
+    <span class="badge bg-primary mb-3 px-3 py-2">
+        <a href="{% url 'category_detail' id=category.id %}"class="text-white text-decoration-none">
+            {{ category }}
+        </a>
+    </span>
+{% endfor %}
