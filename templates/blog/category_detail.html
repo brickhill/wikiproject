@@ -37,18 +37,11 @@
                     {% empty %}
                         <p>No posts yet.</p>
                     {% endfor %}
-                </div>
-                <!-- Back Link -->
-                
+                </div>                
             </div>
         </div>
         <br/>
-        <div class="mt-4">
-            <a href="{% url 'post_list' %}"
-            class="btn btn-outline-secondary rounded-pill px-4">
-                ← Blog
-            </a>
-        </div>
+        {% back_button url='/page' label='Back to Blog' %}
     </div>
 </div>
 {% endblock %}

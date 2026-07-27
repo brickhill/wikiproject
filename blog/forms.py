@@ -18,7 +18,6 @@ class CommentForm(forms.ModelForm):
 
 
 class SearchForm(forms.Form):
-    # print(f"SEARCH FORM")
     q = forms.CharField(
         required=True,
         strip=True,

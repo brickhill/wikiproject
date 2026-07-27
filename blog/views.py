@@ -39,6 +39,8 @@ def post_detail(request, slug, series=None):
         slug=slug,
         status='published',
     )
+    request.session["last_blog_page"] = request.get_full_path()
+    request.session["last_label"] = post.title
     comments = Comment.objects.filter(
         post=post,
         active=True,
@@ -113,7 +115,7 @@ def category_detail(request, id):
     context = {
         "content1": "Cat detail",
         "category": category,
-        "posts": posts
+        "posts": posts,
     }
     return render(request, 'blog/category_detail.html', context)
 

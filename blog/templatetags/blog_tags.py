@@ -21,6 +21,12 @@ def searchbox(q=None):
     return {'search_form': "SEARCH FORM", 'form': form, 'q': q}
 
 
+@register.inclusion_tag('includes/back_button.html')
+def back_button(url=None, label=None):
+    context = {'url': url, 'label': label}
+    return context
+
+
 @register.inclusion_tag('includes/recent_posts.html')
 def recent_posts(count=5):
     posts = Post.objects.filter(status='published'). \
@@ -78,9 +84,5 @@ def format_pub_author(published=None, author=None):
 @register.inclusion_tag('includes/list_categories_for_post.html')
 def list_categories_for_post(post_id=None):
     post = get_object_or_404(Post, id=post_id)
-    print(f"POSTID:{post_id}")
-    print(f"POST:{post}")
-    for c in post.categories.all():
-        print(f"C:{c}")
     context = {"categories": post.categories.all()}
     return context
