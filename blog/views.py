@@ -116,6 +116,7 @@ def category_detail(request, id):
         "content1": "Cat detail",
         "category": category,
         "posts": posts,
+
     }
     return render(request, 'blog/category_detail.html', context)
 
@@ -136,15 +137,19 @@ def series_detail(request, id):
 
 def search(request):
     query = request.GET.get('q').strip()
-    results = Post.objects.filter(
+    post_results = Post.objects.filter(
         Q(title__icontains=query) |
         Q(content__icontains=query)
     )
-
+    page_results = Page.objects.filter(
+        Q(title__icontains=query) |
+        Q(content__icontains=query)   
+    )
     request.session["last_blog_page"] = request.get_full_path()
     request.session["last_label"] = f"Back to Search: {query}"
     return render(request, 'blog/search.html', {
         'query': query,
         'content1': True,
-        'results': results
+        'post_results': post_results,
+        'page_results': page_results
     })

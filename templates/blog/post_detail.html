@@ -14,11 +14,16 @@
                 <article class="card border-0 shadow-sm overflow-hidden">
                     <!-- Hero Image -->
                     {% if post.image %}
-                        <img src="{{ post.image.url }}"
-                        class="img-fluid"
-                        width="250px"
-                        style="border-radius:15px;"
-                        alt="{{ post.title }}">
+                            <figure>
+                            <img src="{{ post.image.url }}"
+                            class="img-fluid"
+                            width="250px"
+                            style="border-radius:15px;"
+                            alt="{{ post.title }}">
+                            {% if post.image_title %}
+                                <figcaption>{{ post.image_title }}</figcaption>
+                            {% endif %}
+                        </figure>
                     {% endif %}
 
                     <div class="card-body p-4 p-md-5">

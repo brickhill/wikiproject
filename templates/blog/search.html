@@ -9,12 +9,22 @@
 
     <h1>Search results</h1>
     <h2>Results for:{{ query }}</h2>
-    {% if results %}
-        {% for r in results %}
+    {% if post_results %}
+        <h3>Posts</h3>
+        {% for r in post_results %}
             <a href="{% url 'post_detail' r.slug %}">
             <h5 class="card-title">{{ r.title }}</h5></a>
         {% endfor %}
-    {% else %}
+    {% endif %}
+   {% if page_results %}
+        <h3>Pages</h3>
+        {% for r in page_results %}
+            <a href="{% url 'page_detail' r.slug %}">
+            <h5 class="card-title">{{ r.title }}</h5></a>
+        {% endfor %}
+    {% endif %}
+
+    {% if not post_results and not page_results %}
         <h3>Nothing found</h3>
     {% endif %}
 </div>
