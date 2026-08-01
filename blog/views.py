@@ -85,7 +85,13 @@ def post_detail(request, slug, series=None):
 def page_detail(request, slug):
 
     page = get_object_or_404(Page, slug=slug)
-    return render(request, 'blog/page.html', {'page': page})
+    return render(request,
+                  'blog/page.html',
+                  {
+                   'page': page,
+                   'content1': True,
+                      },
+                  )
 
 
 def page_std_detail(request, keyword):
@@ -138,13 +144,14 @@ def series_detail(request, id):
 def search(request):
     query = request.GET.get('q').strip()
     post_results = Post.objects.filter(
-        Q(title__icontains=query) |
-        Q(content__icontains=query)
-    )
+        (Q(title__icontains=query) |
+        Q(content__icontains=query)) 
+        & Q(status='published'))
+
     page_results = Page.objects.filter(
-        Q(title__icontains=query) |
-        Q(content__icontains=query)   
-    )
+        (Q(title__icontains=query) |
+        Q(content__icontains=query))
+        & Q(status='published'))
     request.session["last_blog_page"] = request.get_full_path()
     request.session["last_label"] = f"Back to Search: {query}"
     return render(request, 'blog/search.html', {

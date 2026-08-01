@@ -2,10 +2,18 @@
 {% block title %}
 {{ page.title }}
 {% endblock %}
-{% block content %}
+{% load blog_tags %}
+{% block content1 %}
 
 <div class="container-fluid">
     <h1>{{ page.title }}</h1> 
     <p>{{ page.content|safe }}</p>
 </div>
+{% endblock %}
+{% block aside %}
+{% categories %}
+{% list_series %}
+{% endblock %}
+{% block left %}
+    {% searchbox %}
 {% endblock %}
