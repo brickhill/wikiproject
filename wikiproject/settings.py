@@ -139,7 +139,9 @@ STATIC_ROOT = BASE_DIR / "staticfiles/"
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
-
+SILENCED_SYSTEM_CHECKS = [
+    "ckeditor.W001",
+]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
