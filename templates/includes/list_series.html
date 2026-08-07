@@ -1,12 +1,13 @@
 <!-- lists all the series in a sidebox -->
 {% if count > 0 %}
     <div class="card mb-3">
-        <div class="card-header">Blog Series</div>
+        <div class="card-header">Blog Seriess</div>
         <ul class="list-group list-group-flush">
             {% for series in list_series %}
                 <li class="list-group-item border-0">
                     <a href="{% url 'series_detail' id=series.id %}">
                         {{ forloop.counter }}. {{ series.name }} 
+                        ({% url 'series_detail' id=series.id %})
                         {% if series.post_count == 1 %}
                             {{ series.post_count }} post
                         {% else %}

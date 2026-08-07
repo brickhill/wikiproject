@@ -21,14 +21,17 @@ def post_detail(request, slug, series=None):
     back_url = request.session.get("last_blog_page")
     series_slug = None
     category = None
+    print(f"BACKURL: {back_url} SERIES:{series}")
     parts = back_url.strip("/").split("/")
     if len(parts) > 1 and parts[1] == "series":
+        print("Its a series")
         series = get_object_or_404(
             Series,
             id=parts[2]
         )
         series_slug = series.slug
     elif len(parts) > 1 and parts[1] == "category_detail":
+        print("Its a category")
         category = get_object_or_404(
             Category,
             id=parts[2]

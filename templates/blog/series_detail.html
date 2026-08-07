@@ -16,7 +16,9 @@
                 <div class="card-body">
                     {% list_categories_for_post post_id=seriespost.post.id %}
                     <a href="{% url 'post_detail' seriespost.post.slug %}">
-                        <h5 class="card-title">{{ seriespost.post.title }}</h5></a>
+                        <h5 class="card-title">{{ seriespost.post.title }}
+                            ({% url 'post_detail' seriespost.post.slug %})
+                        </h5></a>
                     <p class="card-text">
                         {% if post.image %}
                             <figure class="figure float-md-start me-md-3 mb-3" 
