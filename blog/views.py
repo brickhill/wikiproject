@@ -42,8 +42,8 @@ def post_detail(request, slug, series=None):
         slug=slug,
         status='published',
     )
-    request.session["last_blog_page"] = request.get_full_path()
-    request.session["last_label"] = post.title
+    # request.session["last_blog_page"] = request.get_full_path()
+    # request.session["last_label"] = post.title
     comments = Comment.objects.filter(
         post=post,
         active=True,
