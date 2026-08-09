@@ -54,9 +54,10 @@
 </div>
 {% endblock %}
 {% block aside %}
+    {% categories %}
+
     {% comment %} {% list_series %} {% endcomment %}
 {% endblock %}
 {% block left %}
     {% searchbox %}
-    {% categories %}
 {% endblock %}

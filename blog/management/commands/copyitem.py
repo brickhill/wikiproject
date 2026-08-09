@@ -22,12 +22,28 @@ class Command(BaseCommand):
             choices=['page', 'post']
         )
 
+        parser.add_argument(
+            "--all",
+            action="store_true",
+            help="Dump all items"
+        )
+
     def handle(self, *args, **options):
         # Command logic
-        for o1 in options:
+        if options["slug"] is not None and options["all"] is True:
             self.stdout.write(
-                self.style.SUCCESS(f"{o1}:{options[o1]}")
+                self.style.ERROR("Don't specify slug and __all"))
+            exit()
+        if options["slug"] is None and options["all"] is False:
+            self.stdout.write(
+                self.style.ERROR("Specify slug or __all")
             )
+            exit()
+        
+        # for o1 in options:
+        #     self.stdout.write(
+        #         self.style.SUCCESS(f"{o1}:{options[o1]}")
+        #     )
         self.stdout.write(
             self.style.SUCCESS("Command started"))
         self.stdout.write(
@@ -36,5 +52,4 @@ class Command(BaseCommand):
         if options['overwrite']:
             self.stdout.write(
                 self.style.ERROR("OVERWRITE"))
-
-        dumpit(self, slug=options['slug'], type=options['type'])
+        dumpit(self, slug=options['slug'], all=options["all"], type=options['type'])

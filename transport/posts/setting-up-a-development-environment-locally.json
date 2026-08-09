@@ -1,0 +1,12 @@
+{
+  "title": "Setting up a development environment locally",
+  "slug": "setting-up-a-development-environment-locally",
+  "author": "Peter",
+  "content": "<p>The first step is to create a directory somewhere on your local machine.&nbsp; If you are intending to make multiple projects then it probably makes sense&nbsp; to have a top level directory (e.g. called Django projects) and then create a sub-directory for each project.</p>\r\n\r\n<p>Navigate into the directory just created and create a Python Virtual Environment.&nbsp; I save the environment in the directory itself.&nbsp; A virtual environment is not essential but I highly recommend doing so for each project as the requirements for each of your projects is likely to be specific so you can tailor each environment to suit your project.</p>\r\n\r\n<p>This command will create a virtual environment called virtenv:</p>\r\n\r\n<p>python3 -m venv virtenv</p>\r\n\r\n<p>Start VS Code (or whatever editor you use by choice) and open the project directory.&nbsp; If you have VS Code installed this can be done by entering the project directory in a terminal session and entering:</p>\r\n\r\n<p>code .</p>\r\n\r\n<p>Before we set up git we are going to create a .gitignore file to specify which items we don&rsquo;t want to be source controlled by git.&nbsp; Use the sample and edit as appropriate.&nbsp; Make sure the name of the virtual environment you created for the project is included in the &lsquo;Environments&rsquo; section.</p>\r\n\r\n<p>Start using git</p>\r\n\r\n<p>Hit the &lsquo;Source control&rsquo; icon on the left of the VS Code screen and then hit &lsquo;initialise repository&rsquo;.</p>",
+  "excerpt": "Setting up a development environment on your local machine.",
+  "status": "published",
+  "allow_comments": true,
+  "created": "2026-08-03T21:16:53.786948+00:00",
+  "updated": "2026-08-03T21:17:23.397734+00:00",
+  "published_date": "2026-08-03T21:16:40+00:00"
+}

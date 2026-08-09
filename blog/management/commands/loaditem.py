@@ -16,6 +16,11 @@ class Command(BaseCommand):
             help="page/post",
             choices=['page', 'post']
         )
+        parser.add_argument(
+            "--all",
+            action="store_true",
+            help="Load all items"
+        )
 
     def handle(self, *args, **options):
         # Command logic
@@ -23,7 +28,15 @@ class Command(BaseCommand):
         self.stdout.write(
             self.style.SUCCESS("Command started"))
         self.stdout.write(
-            self.style.SUCCESS(f"option:{options['slug']}")
+            self.style.SUCCESS(f"option:{options['slug']}:ALL{options['all']}")
         )
-
-        loadit(self, slug=options['slug'], type=options['type'])
+        if options["slug"] is not None and options["all"] is True:
+            self.stdout.write(
+                self.style.ERROR("Don't specify slug and __all"))
+            exit()
+        if options["slug"] is None and options["all"] is False:
+            self.stdout.write(
+                self.style.ERROR("Specify slug or __all")
+            )
+            exit()
+        loadit(self, slug=options['slug'], type=options['type'], all=options["all"])

@@ -1,0 +1,12 @@
+{
+  "title": "Getting your project onto PythonAnywhere",
+  "slug": "getting-your-project-onto-pythonanywhere",
+  "author": "Peter",
+  "content": "<p>Getting your code onto PythonAnywhere involves the following steps:</p>\r\n\r\n<p>Commit code to GIT locally.</p>\r\n\r\n<p>Push code to GitHub</p>\r\n\r\n<p>Hit the &lsquo;Publish branch&rsquo; button</p>\r\n\r\n<p>Pull code into PythonAnywhere</p>\r\n\r\n<p>The first time a project is copied the following steps are required:</p>",
+  "excerpt": "Getting your project from your local machine onto the PythonAnywhere SaaS environment.",
+  "status": "published",
+  "allow_comments": true,
+  "created": "2026-08-04T20:27:48.883211+00:00",
+  "updated": "2026-08-04T20:27:48.883238+00:00",
+  "published_date": "2026-08-04T20:27:45+00:00"
+}

@@ -1,0 +1,11 @@
+{
+  "title": "Hero Title",
+  "slug": "hero-title",
+  "content": "<p>Hero text</p>",
+  "status": "draft",
+  "image": null,
+  "image_title": null,
+  "image_alt_text": null,
+  "created": "2026-06-30T19:01:48.942251+00:00",
+  "updated": "2026-06-30T19:01:48.942300+00:00"
+}

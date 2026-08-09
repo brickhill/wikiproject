@@ -14,9 +14,10 @@ Member page
 {% endblock %}
 [
 {% block aside %}
-    {% recent_posts 5 %}
+    {% categories %}
 {% endblock %}
 
 {% block left %}
     {% searchbox %}
+    {% recent_posts %}
 {% endblock %}

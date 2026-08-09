@@ -116,6 +116,7 @@
 {% endblock %}
 {% block left %}
     {% searchbox %}
-    {% blog_panel post=post series=series category=category %}
+    {% recent_posts %}
+    {% comment %} {% blog_panel post=post series=series category=category %} {% endcomment %}
 {% endblock %}
 
