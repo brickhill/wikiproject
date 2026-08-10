@@ -6,7 +6,7 @@ from django.contrib import messages
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'status', 'created', 'published_date')
+    list_display = ('title', 'status', 'priority', 'created', 'published_date')
     prepopulated_fields = {"slug": ("title",)}
     list_filter = ('status', 'categories')
     search_fields = ('title', 'content')

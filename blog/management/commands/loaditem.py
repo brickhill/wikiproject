@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand
 from blog.transport import loadit
 
+
 class Command(BaseCommand):
     help = "Load an item"
 
@@ -39,4 +40,6 @@ class Command(BaseCommand):
                 self.style.ERROR("Specify slug or __all")
             )
             exit()
-        loadit(self, slug=options['slug'], type=options['type'], all=options["all"])
+        loadit(self, slug=options['slug'],
+               type=options['type'],
+               all=options["all"])

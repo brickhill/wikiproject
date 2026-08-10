@@ -4,13 +4,14 @@ pre {
     overflow-x: auto;
     width: 100%;
     margin-bottom: 1.5rem;
-    background-color: #bbb;
+    /* background-color: #bbb; */
+    background-color: rgb(13, 110, 253);
 }
 
 code {
     font-family: Consolas, Monaco, monospace;
 }
-.language-python, .language-html {
+.language-python, .language-html, .language-bash{
     background-color: rgb(240, 234, 234);
 }
 

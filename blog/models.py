@@ -5,6 +5,8 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from ckeditor.fields import RichTextField
 from blog.helpers import resize
 from django.core.exceptions import ValidationError
+from django.core.validators import MinValueValidator, MaxValueValidator
+
 STATUS_CHOICES = [
         ('draft', 'Draft'),
         ('published', 'Published'),
@@ -85,7 +87,14 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     content = RichTextUploadingField()
     excerpt = models.TextField(blank=True)
-
+    priority = models.IntegerField(
+                                   validators=[
+                                               MinValueValidator(1),
+                                               MaxValueValidator(100),
+                                              ],
+                                    help_text="Post priority",
+                                    default=50
+                                   )
     categories = models.ManyToManyField(Category,
                                         blank=True,
                                         related_name="posts")

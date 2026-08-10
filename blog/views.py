@@ -99,14 +99,14 @@ def page_detail(request, slug):
 
 def page_std_detail(request, keyword):
     page = get_object_or_404(Page, keyword=keyword)
-    return render(request, 'blog/page.html', {'page': page, 'content1':True})
+    return render(request, 'blog/page.html', {'page': page, 'content1': True})
 
 
 def category_detail(request, id):
     request.session["last_blog_page"] = request.get_full_path()
     category = get_object_or_404(Category, id=id)
     request.session["last_label"] = "Back to " + category.name
-    posts = category.posts.all()     # type: ignore
+    posts = category.posts.all().order_by('priority')    # type: ignore
     context = {
         "content1": "Cat detail",
         "category": category,
@@ -134,12 +134,12 @@ def search(request):
     query = request.GET.get('q').strip()
     post_results = Post.objects.filter(
         (Q(title__icontains=query) |
-        Q(content__icontains=query)) 
+         Q(content__icontains=query))
         & Q(status='published'))
 
     page_results = Page.objects.filter(
         (Q(title__icontains=query) |
-        Q(content__icontains=query))
+         Q(content__icontains=query))
         & Q(status='published'))
     request.session["last_blog_page"] = request.get_full_path()
     request.session["last_label"] = f"Back to Search: {query}"
