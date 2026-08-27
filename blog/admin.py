@@ -1,4 +1,4 @@
-# admin.py
+# admin.py PG
 from django.contrib import admin
 from adminsortable2.admin import SortableAdminMixin
 from .models import Post, Page, Series, Category, Comment, SeriesPost
