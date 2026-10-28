@@ -116,12 +116,24 @@ def contact(request):
 
 
 def register(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         form = RegisterForm(request.POST)
+
         if form.is_valid():
             form.save()
-            return redirect('login')
+
+            messages.success(
+                request,
+                "Your account has been created successfully."
+            )
+
+            return redirect("login")
+
     else:
         form = RegisterForm()
 
-    return render(request, 'registration/register.html', {'form': form})
+    return render(
+        request,
+        "registration/register.html",
+        {"form": form},
+    )
