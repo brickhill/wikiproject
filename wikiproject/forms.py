@@ -15,6 +15,17 @@ class RegisterForm(UserCreationForm):
         model = User
         fields = ("username", "email")
 
+    def clean_email(self):
+        email = self.cleaned_data.get("email")
+
+        if User.objects.filter(email__iexact=email).exists():
+            raise forms.ValidationError(
+                "This email address is already registered. "
+                "Please use another email address."
+            )
+
+        return email
+
 
 class ContactForm(forms.Form):
 
