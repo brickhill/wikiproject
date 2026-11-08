@@ -3,17 +3,21 @@ from django import forms
 from django.contrib.auth.models import User
 
 
-
-
 class RegisterForm(UserCreationForm):
     email = forms.EmailField(
         required=True,
         label="Email address",
     )
 
+    name = forms.CharField(
+        max_length=200,
+        required = True,
+        label = "Organisation Name"
+    )
+
     class Meta:
         model = User
-        fields = ("username", "email")
+        fields = ("username", "email", "name")
 
     def clean_email(self):
         email = self.cleaned_data.get("email")

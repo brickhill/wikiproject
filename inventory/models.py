@@ -11,6 +11,10 @@ class Organisation(models.Model):
     )
 
 
+    class Meta:
+        unique_together = ["name", "created_by"]
+
+
 class Membership(models.Model):
     ROLE_CHOICES = [
         ("admin", "Admin"),

@@ -124,8 +124,9 @@ def register(request):
             user = form.save()
             print(f"FORM:{user}")
             print(f"USER:{user.username}")
+            name = form.cleaned_data["name"]
             org = Organisation.objects.create(
-                 name="Needs fixing",
+                 name=name,
                  created_by=user
             )
             Membership.objects.create(
