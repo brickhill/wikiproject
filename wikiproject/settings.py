@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'football',
     'blog',
+    'inventory',
     'crispy_forms',
     'crispy_bootstrap5',
     'cookie_consent'

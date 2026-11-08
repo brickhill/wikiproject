@@ -6,6 +6,7 @@ from blog.models import Page
 from django.contrib.auth.views import LoginView, LogoutView
 import resend
 from django.conf import settings
+from inventory.models import Organisation, Membership
 
 
 class MyLoginView(LoginView):
@@ -120,7 +121,19 @@ def register(request):
         form = RegisterForm(request.POST)
 
         if form.is_valid():
-            form.save()
+            user = form.save()
+            print(f"FORM:{user}")
+            print(f"USER:{user.username}")
+            org = Organisation.objects.create(
+                 name="Needs fixing",
+                 created_by=user
+            )
+            Membership.objects.create(
+                organisation=org,
+                user=user,
+                role="admin"
+            )
+
 
             messages.success(
                 request,
