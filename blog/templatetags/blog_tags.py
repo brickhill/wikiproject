@@ -26,6 +26,10 @@ def back_button(url=None, label=None):
     context = {'url': url, 'label': label}
     return context
 
+@register.inclusion_tag('includes/member_links.html')
+def member_links():
+    return {}
+
 
 @register.inclusion_tag('includes/recent_posts.html')
 def recent_posts(count=5):
